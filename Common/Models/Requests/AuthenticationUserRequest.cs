@@ -1,6 +1,4 @@
-﻿using Common.Models.Responses;
-
-namespace Common.Models.Requests
+﻿namespace Common.Models.Requests
 {
     public class AuthenticationUserRequest : AuthenticationRequest<UserLoginRequest, string>
     {

@@ -12,12 +12,23 @@ namespace Common.Models.DTOs
         public string ImageUrl { get; set; }
         public double Rate { get; set; }
 
+        public User() { }
+
         public User(AuthenticationUserTokenRequset request, string hashedPassword)
         {
             UserName = request.Client.UserName;
             Email = request.Client.Email;
             Password = hashedPassword;
             Rate = 3;
+        }
+
+        public void UpdateByRequest(UpdateUserDataRequest request)
+        {
+            UserName = request.UserName;
+            Email = request.Email;
+            Password = request.Password;
+            Description = request.Description;
+            ImageUrl = request.ImageUrl;
         }
 
     }

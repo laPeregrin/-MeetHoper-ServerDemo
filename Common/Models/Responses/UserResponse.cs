@@ -7,16 +7,14 @@
         public string Description { get; set; }
         public string ImageUrl { get; set; }
         public double Rate { get; set; }
-        public PairTokenResponse TokenPair {get;set;}
 
-        public UserResponse(DTOs.User user, PairTokenResponse pairTokenResponse)
+        public UserResponse(DTOs.User user)
         {
             UserName = user.UserName;
             Email = user.Email;
             Description = user.Description;
             ImageUrl = user.ImageUrl;
             Rate = user.Rate;
-            TokenPair = pairTokenResponse;
         }
     }
 }

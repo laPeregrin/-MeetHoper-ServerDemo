@@ -41,7 +41,7 @@ namespace _MeetHoper_ServerDemo.Services
             return GeneratePairToken();
         }
 
-        public async Task<UserResponse> CreateAccount(AuthenticationUserTokenRequset userLoginRequest)
+        public async Task<UserTokenResponse> CreateAccount(AuthenticationUserTokenRequset userLoginRequest)
         {
             var user = await _userHandler.GetEntityByActionAsync(u => u.UserName == userLoginRequest.Client.UserName ||
                                                                       u.Email == userLoginRequest.Client.Email);
@@ -53,7 +53,20 @@ namespace _MeetHoper_ServerDemo.Services
             var newUser = new User(userLoginRequest, hashedPassword);
             await _userHandler.SaveEntityAsync(newUser);
             var pairToken = GeneratePairToken();
-            return new UserResponse(newUser, pairToken);
+            return new UserTokenResponse(newUser, pairToken);
+        }
+
+        public async Task<bool> UpdateAccount(UpdateUserDataRequest userLoginRequest)
+        {
+            var user = await _userHandler.GetEntityByActionAsync(u => u.UserName == userLoginRequest.UserName ||
+                                                                      u.Email == userLoginRequest.Email);
+
+            if (user == null)
+                throw new Exception(Constants.DoesNotExistText);
+
+
+            user.UpdateByRequest(userLoginRequest);
+            return await _userHandler.UpdateEntityAsync(user);
         }
 
         private PairTokenResponse GeneratePairToken() =>

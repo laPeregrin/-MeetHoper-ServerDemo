@@ -34,7 +34,7 @@ namespace _MeetHoper_ServerDemo.Services
              await _dbContext.SaveChangesAsync();
              return true;
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 return false;
             }
