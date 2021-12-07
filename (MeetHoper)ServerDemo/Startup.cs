@@ -34,6 +34,7 @@ namespace _MeetHoper_ServerDemo
             services.AddSingleton<PasswordHasher>();
             services.AddSingleton<IDataBaseUserHandler, ApplicationContextService>();
             services.AddSingleton<UserCredentialsService>();
+            services.AddSingleton<IUserGeoNavigationService, UserGeoNavigationService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

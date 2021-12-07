@@ -1,5 +1,4 @@
-﻿using _MeetHoper_ServerDemo.Models;
-using _MeetHoper_ServerDemo.Services;
+﻿using _MeetHoper_ServerDemo.Services;
 using Common.Models.Requests;
 using Common.Models.Responses;
 using Microsoft.AspNetCore.Authorization;
@@ -16,7 +15,6 @@ namespace _MeetHoper_ServerDemo.Controllers
     {
 
         private readonly UserCredentialsService _userService;
-        private readonly AuthenticationModel _authenticationModel;
 
         public AuthenticateController(UserCredentialsService userService)
         {

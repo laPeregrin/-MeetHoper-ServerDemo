@@ -9,6 +9,7 @@ namespace Common.Abstractions
     {
         Task<TEntity> GetEntityByIdAsync(TId id);
         Task<TEntity> GetEntityByActionAsync(Expression<Func<TEntity, bool>> func);
+        Task<bool> IsEntityExistAsync(TId id);
         Task<bool> UpdateEntityAsync(TEntity entity);
         Task SaveEntityAsync(TEntity entity);
     }

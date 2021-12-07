@@ -40,6 +40,9 @@ namespace _MeetHoper_ServerDemo.Services
             }
         }
 
+        public Task<bool> IsEntityExistAsync(Guid id) =>
+           _dbContext.Users.AnyAsync(u => u.Id == id);
+
         public async Task SaveEntityAsync(User entity)
         {
             try

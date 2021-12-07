@@ -3,5 +3,7 @@
     public class TokenResponseContainer
     {
         public PairTokenResponse TokenPair { get; set; }
+
+        public TokenResponseContainer() { }
     }
 }
