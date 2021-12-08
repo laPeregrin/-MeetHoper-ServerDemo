@@ -41,15 +41,15 @@ namespace _MeetHoper_ServerDemo.Services
             return GeneratePairToken();
         }
 
-        public async Task<UserTokenResponse> CreateAccount(AuthenticationUserTokenRequset userLoginRequest)
+        public async Task<UserTokenResponse> CreateAccount(CreateAccountRequest userLoginRequest)
         {
-            var user = await _userHandler.GetEntityByActionAsync(u => u.UserName == userLoginRequest.Client.UserName ||
-                                                                      u.Email == userLoginRequest.Client.Email);
+            var user = await _userHandler.GetEntityByActionAsync(u => u.UserName == userLoginRequest.UserName ||
+                                                                      u.Email == userLoginRequest.Email);
 
             if (user != null)
                 throw new Exception(Constants.AlreadyExist);
 
-            var hashedPassword = await _passwordHasher.CryptLineAsync(userLoginRequest.Client.Password);
+            var hashedPassword = await _passwordHasher.CryptLineAsync(userLoginRequest.Password);
             var newUser = new User(userLoginRequest, hashedPassword);
             await _userHandler.SaveEntityAsync(newUser);
             var pairToken = GeneratePairToken();

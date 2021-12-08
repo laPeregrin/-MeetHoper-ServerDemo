@@ -6,6 +6,7 @@
 
         public UserResponse(DTOs.User user)
         {
+            Id = user.Id;
             UserName = user.UserName;
             Email = user.Email;
             Description = user.Description;

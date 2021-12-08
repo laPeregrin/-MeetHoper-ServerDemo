@@ -1,5 +1,6 @@
 ﻿using Common.Abstractions;
 using Common.Models.Requests;
+using System;
 
 namespace Common.Models.DTOs
 {
@@ -14,10 +15,11 @@ namespace Common.Models.DTOs
 
         public User() { }
 
-        public User(AuthenticationUserTokenRequset request, string hashedPassword)
+        public User(CreateAccountRequest request, string hashedPassword)
         {
-            UserName = request.Client.UserName;
-            Email = request.Client.Email;
+            Id = Guid.NewGuid();
+            UserName = request.UserName;
+            Email = request.Email;
             Password = hashedPassword;
             Rate = 3;
         }

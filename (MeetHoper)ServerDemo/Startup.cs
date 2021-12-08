@@ -29,13 +29,12 @@ namespace _MeetHoper_ServerDemo
         public void ConfigureServices(IServiceCollection services)
         {
             DbContextSeed.AddDbContext(services, _configuration);
-
             services.AddJwtAuthentication(_configuration);
             services.AddSingleton<PasswordHasher>();
             services.AddSingleton<IDataBaseUserHandler, ApplicationContextService>();
-            services.AddSingleton<UserCredentialsService>();
             services.AddSingleton<IUserGeoNavigationService, UserGeoNavigationService>();
-
+            services.AddSingleton<UserCredentialsService>();
+            services.AddMemoryCache();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

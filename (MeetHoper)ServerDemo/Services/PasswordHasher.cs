@@ -11,7 +11,7 @@ namespace _MeetHoper_ServerDemo.Services
 
         public PasswordHasher(IConfiguration configuration)
         {
-            _salt = configuration.GetSection("Salt").Value;
+            _salt = configuration.GetValue<string>("Salt") ?? "DemoSalt";
         }
 
         public async Task<string> CryptLineAsync(string line) =>

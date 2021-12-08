@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 namespace _MeetHoper_ServerDemo.Controllers
 {
     [ApiController]
-    [Authorize]
     [Route("[controller]")]
     public class AuthenticateController : ControllerBase
     {
@@ -21,6 +20,7 @@ namespace _MeetHoper_ServerDemo.Controllers
             _userService = userService;
         }
 
+        [Authorize]
         [HttpPost("GetPairTokens")]
         [ProducesResponseType(typeof(Response<PairTokenResponse>), 200)]
         public async Task<IActionResult> AuthenticateAsync([FromBody] AuthenticationUserTokenRequset userRequest)
@@ -37,7 +37,7 @@ namespace _MeetHoper_ServerDemo.Controllers
 
         [HttpPost("CreateAccount")]
         [ProducesResponseType(typeof(Response<UserTokenResponse>), 200)]
-        public async Task<IActionResult> CreateAccountAsync([FromBody] AuthenticationUserTokenRequset userRequest)
+        public async Task<IActionResult> CreateAccountAsync([FromBody] CreateAccountRequest userRequest)
         {
             try
             {
@@ -49,6 +49,7 @@ namespace _MeetHoper_ServerDemo.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost("UpdateAccount")]
         [ProducesResponseType(typeof(Response<bool>), 200)]
         public async Task<IActionResult> UpdateAccountAsync([FromBody] UpdateUserDataRequest userRequest)

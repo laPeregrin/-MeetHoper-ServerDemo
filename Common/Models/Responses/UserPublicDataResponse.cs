@@ -1,6 +1,8 @@
-﻿namespace Common.Models.Responses
+﻿using Common.Abstractions;
+
+namespace Common.Models.Responses
 {
-    public class UserPublicDataResponse
+    public class UserPublicDataResponse : BaseObject
     {
         public string UserName { get; set; }
         public string ImageUrl { get; set; }
