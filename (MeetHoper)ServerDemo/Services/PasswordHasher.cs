@@ -1,5 +1,6 @@
-﻿using HashPassword;
-using Microsoft.Extensions.Configuration;
+﻿using _MeetHoper_ServerDemo.Models;
+using HashPassword;
+using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
 
 namespace _MeetHoper_ServerDemo.Services
@@ -9,9 +10,9 @@ namespace _MeetHoper_ServerDemo.Services
 
         private readonly string _salt;
 
-        public PasswordHasher(IConfiguration configuration)
+        public PasswordHasher(IOptions<SaltSecret> options)
         {
-            _salt = configuration.GetValue<string>("Salt") ?? "DemoSalt";
+            _salt = options.Value?.Salt ?? "DemoSalt";
         }
 
         public async Task<string> CryptLineAsync(string line) =>

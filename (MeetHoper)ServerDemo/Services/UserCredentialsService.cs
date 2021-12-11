@@ -35,7 +35,7 @@ namespace _MeetHoper_ServerDemo.Services
             var user = await _userHandler.GetEntityByIdAsync(userRequest.Client.Id);
             if (user == null                                 ||
                 user.UserName != userRequest.Client.UserName || 
-                !await _passwordHasher.CompareLinesAsync(user.Password, userRequest.Client.Password))
+                !await _passwordHasher.CompareLinesAsync(userRequest.Client.Password, user.Password))
                 throw new Exception(Constants.DoesNotExistText);
 
             return GeneratePairToken();
@@ -64,7 +64,7 @@ namespace _MeetHoper_ServerDemo.Services
             if (user == null)
                 throw new Exception(Constants.DoesNotExistText);
 
-
+            userLoginRequest.Password = await _passwordHasher.CryptLineAsync(userLoginRequest.Password);
             user.UpdateByRequest(userLoginRequest);
             return await _userHandler.UpdateEntityAsync(user);
         }

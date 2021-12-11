@@ -2,7 +2,7 @@
 
 namespace Common.Models.Requests
 {
-    public class AuthenticationUserTokenRequset : AuthenticationRequest<User, string>
+    public class AuthenticationUserTokenRequset : AuthenticationRequest<UserLoginRequest, string>
     {
         
     }

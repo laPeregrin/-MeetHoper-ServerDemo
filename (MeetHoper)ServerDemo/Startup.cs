@@ -10,6 +10,7 @@ using _MeetHoper_ServerDemo.Extensions;
 using Common;
 using _MeetHoper_ServerDemo.Services;
 using Common.Abstractions;
+using _MeetHoper_ServerDemo.Models;
 
 namespace _MeetHoper_ServerDemo
 {
@@ -28,8 +29,10 @@ namespace _MeetHoper_ServerDemo
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<SaltSecret>(_configuration);
+
             DbContextSeed.AddDbContext(services, _configuration);
-            services.AddJwtAuthentication(_configuration);
+            services.AddJwtSwaggerAuthentication(_configuration);
             services.AddSingleton<PasswordHasher>();
             services.AddSingleton<IDataBaseUserHandler, ApplicationContextService>();
             services.AddSingleton<IUserGeoNavigationService, UserGeoNavigationService>();

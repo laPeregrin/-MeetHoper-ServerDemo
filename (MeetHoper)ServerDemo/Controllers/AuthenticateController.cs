@@ -20,7 +20,6 @@ namespace _MeetHoper_ServerDemo.Controllers
             _userService = userService;
         }
 
-        [Authorize]
         [HttpPost("GetPairTokens")]
         [ProducesResponseType(typeof(Response<PairTokenResponse>), 200)]
         public async Task<IActionResult> AuthenticateAsync([FromBody] AuthenticationUserTokenRequset userRequest)
@@ -29,7 +28,7 @@ namespace _MeetHoper_ServerDemo.Controllers
             {
                 return Ok(await _userService.AuthenticateAsync(userRequest));
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
@@ -63,6 +62,10 @@ namespace _MeetHoper_ServerDemo.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [Authorize]
+        [HttpGet("HearBeatAuth")]
+        public IActionResult HearBeatAuth() => Ok("Succes!");
 
     }
 }

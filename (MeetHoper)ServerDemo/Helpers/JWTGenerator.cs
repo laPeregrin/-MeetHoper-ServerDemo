@@ -20,7 +20,7 @@ namespace _MeetHoper_ServerDemo.Helpers
                 model.Issuer,
                 model.Audience,
                 null,
-                DateTime.UtcNow,
+                null,
                 DateTime.UtcNow.AddMinutes(model.AccessTokenExpirationMinutes),
                 credentials);
 
