@@ -38,7 +38,7 @@ namespace _MeetHoper_ServerDemo.Services
                 !await _passwordHasher.CompareLinesAsync(userRequest.Client.Password, user.Password))
                 throw new Exception(Constants.DoesNotExistText);
 
-            return GeneratePairToken();
+            return GeneratePairToken(_settings.AccessTokenExpirationMinutes);
         }
 
         public async Task<UserTokenResponse> CreateAccount(CreateAccountRequest userLoginRequest)
@@ -52,7 +52,7 @@ namespace _MeetHoper_ServerDemo.Services
             var hashedPassword = await _passwordHasher.CryptLineAsync(userLoginRequest.Password);
             var newUser = new User(userLoginRequest, hashedPassword);
             await _userHandler.SaveEntityAsync(newUser);
-            var pairToken = GeneratePairToken();
+            var pairToken = GeneratePairToken(_settings.AccessTokenExpirationMinutes);
             return new UserTokenResponse(newUser, pairToken);
         }
 
@@ -69,9 +69,10 @@ namespace _MeetHoper_ServerDemo.Services
             return await _userHandler.UpdateEntityAsync(user);
         }
 
-        private PairTokenResponse GeneratePairToken() =>
+        private PairTokenResponse GeneratePairToken(int expiration) =>
             new PairTokenResponse(JWTGenerator.GenerateToken(_settings),
-                                  JWTGenerator.GenerateToken(_settings, true));
+                                  JWTGenerator.GenerateToken(_settings, true),
+                                  expiration);
 
     }
 }
