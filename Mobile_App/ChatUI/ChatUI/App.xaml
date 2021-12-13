@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChatUI.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ControlTemplate x:Key="bgTemplate">
+                <BoxView x:Name="bgGradient" Scale="4" AnchorX="1" AnchorY="0">
+                    <BoxView.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#23D5Ab" Offset="0.3"/>
+                            <GradientStop Color="#23A605" Offset="0.5"/>
+                            <GradientStop Color="#E73C7E" Offset="0.7"/>
+                            <GradientStop Color="#EE7752" Offset="1.3"/>
+                        </LinearGradientBrush>
+                    </BoxView.Background>
+                </BoxView>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

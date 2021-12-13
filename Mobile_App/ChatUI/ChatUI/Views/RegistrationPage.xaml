@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:ChatUI.ViewModels"
+             x:Class="ChatUI.Views.RegistrationPage"
+             Shell.FlyoutBehavior="Disabled"
+             BackgroundColor="Black">
+    <ContentPage.BindingContext>
+        <local:RegistrationViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Padding="40" VerticalOptions="Center"
+                     HorizontalOptions="FillAndExpand"
+                     BackgroundColor="DarkGray">
+            <Label Text="Имя:"/>
+            <Entry Text="{Binding Username}" Placeholder="Введите имя" x:Name="userName"/>
+            <Label Text="Пароль:"/>
+            <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Введите пароль" x:Name="userPassword"/>
+            <Label Text="Почта:"/>
+            <Entry Text="{Binding Email}" Placeholder="Введите почту" x:Name="userEmail"/>
+            <Button Text="Зарегестрироваться" Clicked="Button_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

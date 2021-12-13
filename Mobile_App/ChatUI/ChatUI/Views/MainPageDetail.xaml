@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChatUI.Views.MainPageDetail"
+             Title="Detail">
+    <StackLayout Padding="10" BackgroundColor="White">
+        <Grid Padding="10">
+                <Frame BorderColor="Black"
+                   CornerRadius="20">
+                    <StackLayout Orientation="Horizontal">
+                    <Image Source="vladik.jpg" WidthRequest="66" x:Name="userImage"/>
+                        <StackLayout VerticalOptions="Center">
+                            <Label
+                            TextColor="Black"
+                            Text="Влад"
+                            x:Name="userName"
+                            VerticalOptions="Center"/>
+                            <Label
+                            TextColor="Black"
+                            Text="abobA"
+                            VerticalOptions="Center"/>
+                        </StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapped"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                </Frame>
+            </Grid>
+            <Grid Padding="10">
+                <Frame BorderColor="Black"
+                   CornerRadius="20">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="vladik.jpg" WidthRequest="66"/>
+                        <StackLayout VerticalOptions="Center">
+                            <Label
+                            TextColor="Black"
+                            Text="Aboba"
+                            VerticalOptions="Center"/>
+                            <Label
+                            TextColor="Black"
+                            Text="abobA"
+                            VerticalOptions="Center"/>
+                        </StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapped"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                </Frame>
+            </Grid>
+            <Grid Padding="10">
+                <Frame BorderColor="Black"
+                   CornerRadius="20">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="vladik.jpg" WidthRequest="66"/>
+                        <StackLayout VerticalOptions="Center">
+                            <Label
+                            TextColor="Black"
+                            Text="Abobas"
+                            VerticalOptions="Center"/>
+                            <Label
+                            TextColor="Black"
+                            Text="abobA"
+                            VerticalOptions="Center"/>
+                        </StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapped"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                </Frame>
+            </Grid>
+        </StackLayout>
+</ContentPage>
