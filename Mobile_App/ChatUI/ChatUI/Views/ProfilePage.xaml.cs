@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -58,10 +53,10 @@ namespace ChatUI.Views
         {
             InitializeComponent();
             BindingContext = this;
-            Rate = 1488;
-            Age = 18;
+            Rate = 9;
+            Age = 23;
             City = "Kyiv";
-            MyStringProperty = "Меня зовут Кира Йошикаге. Мне 33 года. Мой дом находится в северо-восточной части Морио, где расположены все виллы";
+            MyStringProperty = "Чтобы ни выпало мне в жизни, я всегда буду помнить слова: Чем больше сила, тем больше и ответственность. Это мой дар, моё проклятье. Кто я? Я Человек-Паук";
         }
         public void EditorTextChanged(object sender, TextChangedEventArgs e)
         {

@@ -8,37 +8,16 @@
                 <Frame BorderColor="Black"
                    CornerRadius="20">
                     <StackLayout Orientation="Horizontal">
-                    <Image Source="vladik.jpg" WidthRequest="66" x:Name="userImage"/>
-                        <StackLayout VerticalOptions="Center">
-                            <Label
-                            TextColor="Black"
-                            Text="Влад"
-                            x:Name="userName"
-                            VerticalOptions="Center"/>
-                            <Label
-                            TextColor="Black"
-                            Text="abobA"
-                            VerticalOptions="Center"/>
-                        </StackLayout>
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnTapped"/>
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>
-                </Frame>
-            </Grid>
-            <Grid Padding="10">
-                <Frame BorderColor="Black"
-                   CornerRadius="20">
-                    <StackLayout Orientation="Horizontal">
-                        <Image Source="vladik.jpg" WidthRequest="66"/>
+                    <Image Source="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" WidthRequest="66" x:Name="userImage"/>
                         <StackLayout VerticalOptions="Center">
                             <Label
                             TextColor="Black"
                             Text="Aboba"
+                            x:Name="userName"
                             VerticalOptions="Center"/>
                             <Label
                             TextColor="Black"
-                            Text="abobA"
+                            Text="Пример текста описания"
                             VerticalOptions="Center"/>
                         </StackLayout>
                     <StackLayout.GestureRecognizers>
@@ -51,15 +30,36 @@
                 <Frame BorderColor="Black"
                    CornerRadius="20">
                     <StackLayout Orientation="Horizontal">
-                        <Image Source="vladik.jpg" WidthRequest="66"/>
+                    <Image Source="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" WidthRequest="66"/>
                         <StackLayout VerticalOptions="Center">
                             <Label
                             TextColor="Black"
-                            Text="Abobas"
+                            Text="Имя"
                             VerticalOptions="Center"/>
                             <Label
                             TextColor="Black"
-                            Text="abobA"
+                            Text="Пример текста описания"
+                            VerticalOptions="Center"/>
+                        </StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapped"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                </Frame>
+            </Grid>
+            <Grid Padding="10">
+                <Frame BorderColor="Black"
+                   CornerRadius="20">
+                    <StackLayout Orientation="Horizontal">
+                    <Image Source="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" WidthRequest="66"/>
+                        <StackLayout VerticalOptions="Center">
+                            <Label
+                            TextColor="Black"
+                            Text="Имя"
+                            VerticalOptions="Center"/>
+                            <Label
+                            TextColor="Black"
+                            Text="Пример текста описания"
                             VerticalOptions="Center"/>
                         </StackLayout>
                     <StackLayout.GestureRecognizers>
