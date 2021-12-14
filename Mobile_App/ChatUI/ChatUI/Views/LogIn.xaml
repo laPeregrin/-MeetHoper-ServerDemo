@@ -28,9 +28,9 @@
             <StackLayout Padding="40" VerticalOptions="Center"
                      HorizontalOptions="FillAndExpand">
                 <Label Text="Почта:"/>
-                <Entry Text="{Binding Email}" Placeholder="Username"/>
+                <Entry Text="{Binding Email}" Placeholder="Почта"/>
                 <Label Text="Пароль:"/>
-                <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Password"/>
+                <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Пароль"/>
                 <Button Text="Login" Clicked="Button_Clicked"/>
                 <Label Text="Register" HorizontalOptions="Center">
                     <Label.GestureRecognizers>

@@ -3,21 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:ChatUI.ViewModels"
              x:Class="ChatUI.Views.RegistrationPage"
              Shell.FlyoutBehavior="Disabled"
-             BackgroundColor="Black">
+             BackgroundColor="White">
+    <ContentPage.Resources>
+        <Color x:Key="TextColor">#000000</Color>
+    </ContentPage.Resources>
     <ContentPage.BindingContext>
         <local:RegistrationViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout Padding="40" VerticalOptions="Center"
-                     HorizontalOptions="FillAndExpand"
-                     BackgroundColor="DarkGray">
-            <Label Text="Имя:"/>
-            <Entry Text="{Binding Username}" Placeholder="Введите имя" x:Name="userName"/>
-            <Label Text="Пароль:"/>
-            <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Введите пароль" x:Name="userPassword"/>
-            <Label Text="Почта:"/>
-            <Entry Text="{Binding Email}" Placeholder="Введите почту" x:Name="userEmail"/>
-            <Button Text="Зарегестрироваться" Clicked="Button_Clicked"/>
+                     HorizontalOptions="FillAndExpand">
+            <Label Text="Имя:" TextColor="{StaticResource TextColor}"/>
+            <Entry Text="{Binding Username}" Placeholder="Введите имя" x:Name="userName" TextColor="{StaticResource TextColor}"/>
+            <Label Text="Пароль:" TextColor="{StaticResource TextColor}"/>
+            <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Введите пароль" x:Name="userPassword" TextColor="{StaticResource TextColor}"/>
+            <Label Text="Почта:" TextColor="{StaticResource TextColor}"/>
+            <Entry Text="{Binding Email}" Placeholder="Введите почту" x:Name="userEmail" TextColor="{StaticResource TextColor}"/>
+            <Button Text="Зарегестрироваться" Clicked="Button_Clicked" TextColor="{StaticResource TextColor}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
