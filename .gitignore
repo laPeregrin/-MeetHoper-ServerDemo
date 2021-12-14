@@ -362,8 +362,3 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-
-ChatUI/ChatUI/bin
-ChatUI/ChatUI/obj
-ChatUI/ChatUI.Android/bin
-ChatUI/ChatUI.Android/obj
