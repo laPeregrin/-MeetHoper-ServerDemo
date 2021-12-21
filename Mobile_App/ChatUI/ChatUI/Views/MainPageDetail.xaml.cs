@@ -25,7 +25,7 @@ namespace ChatUI.Views
                 Name = $"{userName.Text}",
                 ImageSource = $"{ userImage.Source }"
             };
-            Console.WriteLine($"{ userImage }");
+            Console.WriteLine($"{ userImage.Source }");
             var secondPage = new UserPage(data);
             await Navigation.PushAsync(secondPage);
         }

@@ -8,11 +8,11 @@
                 <Frame BorderColor="Black"
                    CornerRadius="20">
                     <StackLayout Orientation="Horizontal">
-                    <Image Source="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" WidthRequest="66" x:Name="userImage"/>
+                    <Image Source="Vladik.jpg" WidthRequest="66" x:Name="userImage"/>
                         <StackLayout VerticalOptions="Center">
                             <Label
                             TextColor="Black"
-                            Text="Aboba"
+                            Text="Имя"
                             x:Name="userName"
                             VerticalOptions="Center"/>
                             <Label
@@ -30,7 +30,7 @@
                 <Frame BorderColor="Black"
                    CornerRadius="20">
                     <StackLayout Orientation="Horizontal">
-                    <Image Source="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" WidthRequest="66"/>
+                    <Image Source="Vladik.jpg" WidthRequest="66"/>
                         <StackLayout VerticalOptions="Center">
                             <Label
                             TextColor="Black"
@@ -51,7 +51,7 @@
                 <Frame BorderColor="Black"
                    CornerRadius="20">
                     <StackLayout Orientation="Horizontal">
-                    <Image Source="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" WidthRequest="66"/>
+                    <Image Source="Vladik.jpg" WidthRequest="66"/>
                         <StackLayout VerticalOptions="Center">
                             <Label
                             TextColor="Black"
@@ -59,7 +59,7 @@
                             VerticalOptions="Center"/>
                             <Label
                             TextColor="Black"
-                            Text="Пример текста описания"
+                            Text="Пример текста в описании"
                             VerticalOptions="Center"/>
                         </StackLayout>
                     <StackLayout.GestureRecognizers>

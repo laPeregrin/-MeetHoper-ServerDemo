@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <Image Source="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png`1" WidthRequest="200" HeightRequest="200">
+                <Image Source="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" WidthRequest="200" HeightRequest="200">
                     <Image.Clip>
                         <EllipseGeometry RadiusX="70" RadiusY="70" Center="180,100"/>
                     </Image.Clip>

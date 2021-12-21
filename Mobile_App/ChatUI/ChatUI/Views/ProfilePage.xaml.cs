@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -53,7 +58,7 @@ namespace ChatUI.Views
         {
             InitializeComponent();
             BindingContext = this;
-            Rate = 9;
+            Rate = 10;
             Age = 23;
             City = "Kyiv";
             MyStringProperty = "Чтобы ни выпало мне в жизни, я всегда буду помнить слова: Чем больше сила, тем больше и ответственность. Это мой дар, моё проклятье. Кто я? Я Человек-Паук";
