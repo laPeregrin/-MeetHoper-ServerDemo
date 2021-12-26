@@ -1,6 +1,8 @@
-﻿using Common.Models.Requests;
+﻿using Common.Models.DTOs;
+using Common.Models.Requests;
 using Common.Models.Responses;
 using ServerHandler.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,10 +11,12 @@ namespace ServerHandler.Services
     internal class APIWorkerService
     {
         private const string AuthorizationHeader = "Authorization";
+        private const string AuthenticateEndpoint = "Authenticate";
+        private const string GeoDataNavigationEndpoint = "GeoDataNavigation/GetUsersNear";
 
-        private const string GetPairsToken = "/Authenticate/GetPairTokens";
-        private const string CreateAccount = "/Authenticate/CreateAccount";
-        private const string UpdateAccount = "/Authenticate/UpdateAccount";
+        private const string GetPairsToken = AuthenticateEndpoint + "/GetPairTokens";
+        private const string CreateAccount = AuthenticateEndpoint + "/CreateAccount";
+        private const string UpdateAccount = AuthenticateEndpoint + "/UpdateAccount";
 
         private readonly HttpWorker _httpWorker;
         private readonly string _baseAddress;
@@ -25,7 +29,6 @@ namespace ServerHandler.Services
 
         public async Task<PairTokenResponse> GetPairTokens(AccessToken accessToken)
         {
-            var headers = new Dictionary<string, string>();
             var request = new AuthenticationUserTokenRequset()
             {
                 RefreshToken = accessToken.RefreshToken,
@@ -37,14 +40,13 @@ namespace ServerHandler.Services
                     Password = accessToken.Password,
                 }
             };
-
+            
             var link = _baseAddress + GetPairsToken;
-            return await _httpWorker.PostByRequestAsync<AuthenticationUserTokenRequset, PairTokenResponse>(link, request, headers);
+            return await _httpWorker.PostByRequestAsync<AuthenticationUserTokenRequset, PairTokenResponse>(link, request);
         }
 
         public async Task<UserTokenResponse> CreateAccountAsync(AccessToken accessToken)
         {
-            var headers = new Dictionary<string, string>();
             var request = new CreateAccountRequest()
             {
                 Email = accessToken.Email,
@@ -53,7 +55,7 @@ namespace ServerHandler.Services
             };
 
             var link = _baseAddress + CreateAccount;
-            return await _httpWorker.PostByRequestAsync<CreateAccountRequest, UserTokenResponse>(link, request, headers);
+            return await _httpWorker.PostByRequestAsync<CreateAccountRequest, UserTokenResponse>(link, request);
         }
 
         public async Task<bool> UpdateAccountAsync(AccessToken accessToken, string description, string img)
@@ -69,10 +71,30 @@ namespace ServerHandler.Services
                 Password = accessToken.Password,
             };
 
-            headers.Add(AuthorizationHeader, $"Bearer {accessToken.AccessJWTToken}");
+            CompleteHeaderByAccessToken(headers, accessToken);
             var link = _baseAddress + UpdateAccount;
             return await _httpWorker.PostByRequestAsync<UpdateUserDataRequest, bool>(link, request, headers);
         }
 
+        public async Task<UserCollectionResponse> GetUsersAround(AccessToken accessToken, Geoposition geopostion)
+        {
+            var headers = new Dictionary<string, string>();
+            CompleteHeaderByAccessToken(headers, accessToken);
+            var query = string.Format("/?UserId={0}&longitude={1}&latitude={2}", accessToken.UserId,
+                                                                                 geopostion.Longitude,
+                                                                                 geopostion.Latitude);
+
+            var link = _baseAddress + GeoDataNavigationEndpoint + query;
+            return await _httpWorker.GetLinkAsync<UserCollectionResponse>(link, headers);
+        }
+
+        private void CompleteHeaderByAccessToken(Dictionary<string, string> headers, AccessToken accessToken)
+        {
+            if (headers == null)
+                throw new ArgumentNullException();
+
+            headers[AuthorizationHeader] = $"Bearer {accessToken.AccessJWTToken}";
+        }
     }
 }
+

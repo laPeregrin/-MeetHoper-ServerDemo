@@ -1,12 +1,8 @@
-﻿using _MeetHoper_ServerDemo.Services;
-using Common.Abstractions;
+﻿using Common.Abstractions;
 using Common.Models.Responses;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace _MeetHoper_ServerDemo.Controllers
@@ -16,7 +12,6 @@ namespace _MeetHoper_ServerDemo.Controllers
     [ApiController]
     public class GeoDataNavigationController : ControllerBase
     {
-
         private readonly IUserGeoNavigationService _userGeoNavigationService;
 
         public GeoDataNavigationController(IUserGeoNavigationService userGeoService)
@@ -24,13 +19,15 @@ namespace _MeetHoper_ServerDemo.Controllers
             _userGeoNavigationService = userGeoService;
         }
 
-        [HttpPost("GetUsersNear")]
+        [HttpGet("GetUsersNear")]
         [ProducesResponseType(typeof(Response<UserCollectionResponse>), 200)]
-        public async Task<IActionResult> GetUserNearAsync([FromQuery(Name = "UserId")] Guid id, [FromQuery]float longitude, [FromQuery]float latitude)
+        public async Task<IActionResult> GetUserNearAsync([FromQuery(Name = "UserId")] Guid id,
+                                                          [FromQuery] double longitude,
+                                                          [FromQuery] double latitude)
         {
             try
             {
-               return Ok(await _userGeoNavigationService.GetNearResponseAsync(id, longitude, latitude));
+               return Ok(await _userGeoNavigationService.GetNearResponseAsync(id, new Common.Models.DTOs.Geoposition(longitude, latitude)));
             }
             catch(Exception e)
             {
