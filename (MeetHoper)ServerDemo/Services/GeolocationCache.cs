@@ -1,31 +1,35 @@
 ﻿using _MeetHoper_ServerDemo.Interfaces;
 using Common.Abstractions;
 using Common.Models.DTOs;
+using Common.Models.Responses;
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace _MeetHoper_ServerDemo.Services
 {
-    public class GeolocationCache : ICashService<Geoposition, User>
+    public class GeolocationCache : ICashService<Geoposition, UserPublicDataResponse>
     {
         private readonly ConcurrentDictionary<Guid, Geoposition> _geoByUserId;
         private readonly IDataBaseUserHandler _dataBaseUserHandle;
+        private readonly DapperUserHelper _dapperUserHelper;
 
-        public GeolocationCache(IDataBaseUserHandler dataBaseUserHandle)
+        public GeolocationCache(IDataBaseUserHandler dataBaseUserHandle, DapperUserHelper dapperUserHelper)
         {
             _geoByUserId = new ConcurrentDictionary<Guid, Geoposition>();
             _dataBaseUserHandle = dataBaseUserHandle;
+            _dapperUserHelper = dapperUserHelper;
         }
 
-        public async Task<User[]> GetArrayByFuncIdAsync(Func<Geoposition, bool> func, Guid id)
+        public async Task<IEnumerable<UserPublicDataResponse>> GetArrayByFuncIdAsync(Func<Geoposition, bool> func, Guid id)
         {
             if (!_geoByUserId.TryGetValue(id, out var userGeo))
-                return Array.Empty<User>();
+                return Array.Empty<UserPublicDataResponse>();
 
             var ids = _geoByUserId.Where(geoById => func(geoById.Value)).Select(u => u.Key).ToArray();
-            return await _dataBaseUserHandle.GetEntitiesByIdsAsync(ids);
+            return await _dapperUserHelper.GetFromDBByIds(ids);
         }
 
         public Task<Geoposition> GetItemAsync(Guid itemId)  =>

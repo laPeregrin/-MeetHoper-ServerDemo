@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace _MeetHoper_ServerDemo.Interfaces
@@ -11,6 +12,6 @@ namespace _MeetHoper_ServerDemo.Interfaces
 
         Task<TCachedItem> GetItemAsync(Guid itemId);
 
-        Task<TSpecialItem[]> GetArrayByFuncIdAsync(Func<TCachedItem, bool> func, Guid id);
+        Task<IEnumerable<TSpecialItem>> GetArrayByFuncIdAsync(Func<TCachedItem, bool> func, Guid id);
     }
 }
