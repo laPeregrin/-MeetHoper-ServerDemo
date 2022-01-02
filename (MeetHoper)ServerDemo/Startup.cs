@@ -13,6 +13,7 @@ using Common.Abstractions;
 using _MeetHoper_ServerDemo.Models;
 using _MeetHoper_ServerDemo.Interfaces;
 using Common.Models.DTOs;
+using Common.Models.Responses;
 
 namespace _MeetHoper_ServerDemo
 {
@@ -36,7 +37,7 @@ namespace _MeetHoper_ServerDemo
             DbContextSeed.AddDbContext(services, _configuration);
             services.AddJwtSwaggerAuthentication(_configuration);
             services.AddSingleton<PasswordHasher>();
-            services.AddSingleton<ICashService<Geoposition, User>, GeolocationCache>();
+            services.AddSingleton<ICashService<Geoposition, UserPublicDataResponse>, GeolocationCache>();
             services.AddSingleton<IDataBaseUserHandler, ApplicationContextService>();
             services.AddSingleton<IUserGeoNavigationService, UserGeoNavigationService>();
             services.AddSingleton<UserCredentialsService>();
