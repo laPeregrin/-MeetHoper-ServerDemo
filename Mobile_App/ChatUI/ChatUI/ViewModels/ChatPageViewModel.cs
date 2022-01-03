@@ -1,31 +1,31 @@
 ﻿using ChatUI.Abstractions;
 using ChatUI.Models;
+using MvvmHelpers.Commands;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Xamarin.Forms;
 
 namespace ChatUI.ViewModels
 {
     public class ChatPageViewModel : ViewModelBase
     {
+        private string _textToSend;
+
         public ObservableCollection<Message> Messages { get; set; } = new ObservableCollection<Message>();
-        public string TextToSend { get; set; }
-        public ICommand OnSendCommand { get; set; }
+        public string TextToSend { get => _textToSend;
+                                   set { _textToSend = value; 
+                                         RaisePropertyChanged(); } }
 
         public ChatPageViewModel()
         {
             Messages.Add(new Message() { Text = "Hi" });
             Messages.Add(new Message() { Text = "Hello", User = App.User });
             Messages.Add(new Message() { Text = "Test message"});
-
-            OnSendCommand = new Command(() =>
-            {
-                if (!string.IsNullOrEmpty(TextToSend))
-                {
-                    Messages.Add(new Message() { Text = TextToSend, User = App.User });
-                    TextToSend = string.Empty;
-                }
-            });
         }
+
+        public ICommand SendMessageCommand => new AsyncCommand(async () =>
+        {
+            Messages.Add(new Message(null, _textToSend));
+            TextToSend = string.Empty;
+        });
     }
 }

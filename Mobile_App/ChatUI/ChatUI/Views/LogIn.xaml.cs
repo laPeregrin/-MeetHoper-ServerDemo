@@ -1,5 +1,4 @@
-﻿using ChatUI.ViewModels;
-using System;
+﻿using System;
 using System.Timers;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -16,7 +15,6 @@ namespace ChatUI.Views
 
         public LogIn()
         {
-            BindingContext = new LoginViewModel();
             InitializeComponent();
             StartAnimation();
         }

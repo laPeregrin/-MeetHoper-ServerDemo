@@ -2,7 +2,7 @@
 
 namespace ChatUI.ViewModels
 {
-    class LoginViewModel : ViewModelBase
+    public class LoginViewModel : ViewModelBase
     {
         private string _password;
         private string _email;
