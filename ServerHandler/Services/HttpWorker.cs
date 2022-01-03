@@ -10,13 +10,17 @@ namespace ServerHandler.Services
     internal class HttpWorker
     {
 
-        internal async Task<TResponse> PostByRequestAsync<TRequest, TResponse>(string url, TRequest request, Dictionary<string, string> headers) =>
-           await GetResponseAsync<TResponse>(url, JsonConvert.SerializeObject(request), headers, HttpMethod.Post);
+        internal async Task<TResponse> PostByRequestAsync<TRequest, TResponse>(string url, TRequest request, Dictionary<string, string> headers = null) =>
+           await GetResponseAsync<TResponse>(url, JsonConvert.SerializeObject(request), HttpMethod.Post, headers);
+
+        internal async Task<TResponse> GetLinkAsync<TResponse>(string url, Dictionary<string, string> headers = null) =>
+          await GetResponseAsync<TResponse>(url, null, HttpMethod.Get, headers);
+
 
         internal async Task<TResponse> GetResponseAsync<TResponse>(string url,
-                                                                 string content,
-                                                                 Dictionary<string, string> headers,
-                                                                 HttpMethod httpMethod)
+                                                                   string content,
+                                                                   HttpMethod httpMethod,
+                                                                   Dictionary<string, string> headers = null)
         {
             var request = new HttpRequestMessage()
             {
@@ -24,8 +28,12 @@ namespace ServerHandler.Services
                 Content = string.IsNullOrEmpty(content) ? null :
                                                           new StringContent(content, Encoding.UTF8, "application/json"),
             };
-            foreach (var header in headers)
-                request.Headers.Add(header.Key, header.Value);
+
+            if (headers != null)
+            {
+                foreach (var header in headers)
+                    request.Headers.Add(header.Key, header.Value);
+            }
 
             var response = await new HttpClient().SendAsync(request).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode)
@@ -37,7 +45,7 @@ namespace ServerHandler.Services
             {
                 result = JsonConvert.DeserializeObject<TResponse>(jsonContent);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw new Exception($"Status Code: {response.StatusCode} Content: {jsonContent}");
             }
