@@ -1,13 +1,12 @@
-﻿using ChatUI.Models;
-using System;
+﻿using ChatUI.Abstractions;
+using ChatUI.Models;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace ChatUI.ViewModels
 {
-    public class ChatPageViewModel : INotifyPropertyChanged
+    public class ChatPageViewModel : ViewModelBase
     {
         public ObservableCollection<Message> Messages { get; set; } = new ObservableCollection<Message>();
         public string TextToSend { get; set; }
@@ -28,7 +27,5 @@ namespace ChatUI.ViewModels
                 }
             });
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

@@ -1,7 +1,5 @@
 ﻿using ChatUI.Views;
-using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ChatUI
 {
@@ -11,7 +9,7 @@ namespace ChatUI
         public App()
         {
             InitializeComponent();
-
+            DIContainer.Init();
             MainPage = new AppShell();
         }
 

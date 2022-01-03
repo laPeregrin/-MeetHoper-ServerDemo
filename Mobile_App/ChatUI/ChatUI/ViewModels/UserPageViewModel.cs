@@ -1,46 +1,36 @@
-﻿using ChatUI.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
-using System.Windows.Input;
-using Xamarin.Forms;
+﻿using ChatUI.Abstractions;
+using ChatUI.Models;
 
 namespace ChatUI.ViewModels
 {
-    public class UserPageViewModel : INotifyPropertyChanged
+    public class UserPageViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private User user;
+        private User _user;
 
         public UserPageViewModel()
         {
-            user = new User();
+            _user = new User();
         }
+
         public string Name
         {
-            get { return user.Name; }
+            get { return _user.Name; }
             set
             {
-                user.Name = value;
-                OnPropertyChanged("Title");
+                _user.Name = value;
+                RaisePropertyChanged();
             }
         }
 
         public string ImageSource
         {
-            get { return user.Image; }
+            get { return _user.Image; }
             set
             {
-                user.Image = value;
-                OnPropertyChanged("Image");
+                _user.Image = value;
+                RaisePropertyChanged();
             }
         }
-        protected void OnPropertyChanged(string propName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propName));
-        }
+
     }
 }

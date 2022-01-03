@@ -27,9 +27,9 @@
        Opacity="0.5">
             <StackLayout Padding="40" VerticalOptions="Center"
                      HorizontalOptions="FillAndExpand">
-                <Label Text="Почта:"/>
+                <Label Text="Username:"/>
                 <Entry Text="{Binding Email}" Placeholder="Username"/>
-                <Label Text="Пароль:"/>
+                <Label Text="Password:"/>
                 <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Password"/>
                 <Button Text="Login" Clicked="Button_Clicked"/>
                 <Label Text="Register" HorizontalOptions="Center">

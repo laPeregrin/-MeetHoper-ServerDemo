@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using ChatUI.Abstractions;
 
 namespace ChatUI.ViewModels
 {
-    public class RegistrationViewModel : INotifyPropertyChanged
+    public class RegistrationViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
         private string _username;
         private string _password;
         private string _email;
@@ -18,7 +14,7 @@ namespace ChatUI.ViewModels
             set
             {
                 _username = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Username"));
+                RaisePropertyChanged();
             }
         }
         public string Password
@@ -27,7 +23,7 @@ namespace ChatUI.ViewModels
             set
             {
                 _password = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Password"));
+                RaisePropertyChanged();
             }
         }
 
@@ -37,7 +33,7 @@ namespace ChatUI.ViewModels
             set
             {
                 _email = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Email"));
+                RaisePropertyChanged();
             }
         }
     }
