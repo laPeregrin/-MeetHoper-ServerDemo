@@ -1,5 +1,4 @@
 ﻿using _MeetHoper_ServerDemo.Interfaces;
-using Common.Abstractions;
 using Common.Models.DTOs;
 using Common.Models.Responses;
 using System;
@@ -13,13 +12,11 @@ namespace _MeetHoper_ServerDemo.Services
     public class GeolocationCache : ICashService<Geoposition, UserPublicDataResponse>
     {
         private readonly ConcurrentDictionary<Guid, Geoposition> _geoByUserId;
-        private readonly IDataBaseUserHandler _dataBaseUserHandle;
         private readonly DapperUserHelper _dapperUserHelper;
 
-        public GeolocationCache(IDataBaseUserHandler dataBaseUserHandle, DapperUserHelper dapperUserHelper)
+        public GeolocationCache(DapperUserHelper dapperUserHelper)
         {
             _geoByUserId = new ConcurrentDictionary<Guid, Geoposition>();
-            _dataBaseUserHandle = dataBaseUserHandle;
             _dapperUserHelper = dapperUserHelper;
         }
 

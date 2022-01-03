@@ -18,10 +18,10 @@ namespace _MeetHoper_ServerDemo.Services
 
         #endregion //Constants
 
-        private readonly ICashService<Geoposition, User> _cache;
+        private readonly ICashService<Geoposition, UserPublicDataResponse> _cache;
         private readonly IDataBaseUserHandler _dataBaseUserHandler;
 
-        public UserGeoNavigationService(IDataBaseUserHandler dataBaseUserHandler, ICashService<Geoposition, User> cache)
+        public UserGeoNavigationService(IDataBaseUserHandler dataBaseUserHandler, ICashService<Geoposition, UserPublicDataResponse> cache)
         {
             _cache = cache;
             _dataBaseUserHandler = dataBaseUserHandler;
@@ -35,9 +35,7 @@ namespace _MeetHoper_ServerDemo.Services
             var users = await _cache.GetArrayByFuncIdAsync(g => IsNearLocation(geoposition, g) , id);
             await _cache.SetRecordAsync(id, geoposition, null);
 
-            var response = new UserCollectionResponse();
-            response.UsersArray = users.ConvertArrayByArray(u => u.ToResponse());
-            return response;
+            return new UserCollectionResponse(users);
         }
 
         private bool IsNearLocation(Geoposition geopositionRoot, Geoposition geoposition)

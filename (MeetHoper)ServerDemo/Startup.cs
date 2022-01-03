@@ -36,12 +36,12 @@ namespace _MeetHoper_ServerDemo
 
             DbContextSeed.AddDbContext(services, _configuration);
             services.AddJwtSwaggerAuthentication(_configuration);
+            services.AddSingleton<DapperUserHelper>();
             services.AddSingleton<PasswordHasher>();
             services.AddSingleton<ICashService<Geoposition, UserPublicDataResponse>, GeolocationCache>();
             services.AddSingleton<IDataBaseUserHandler, ApplicationContextService>();
             services.AddSingleton<IUserGeoNavigationService, UserGeoNavigationService>();
             services.AddSingleton<UserCredentialsService>();
-            services.AddMemoryCache();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
