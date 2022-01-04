@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ServerHandler.Services
 {
-    internal class APIWorkerService
+    public class APIWorkerService
     {
         private const string AuthorizationHeader = "Authorization";
         private const string AuthenticateEndpoint = "Authenticate";
@@ -21,9 +21,9 @@ namespace ServerHandler.Services
         private readonly HttpWorker _httpWorker;
         private readonly string _baseAddress;
 
-        public APIWorkerService(string baseAddress, HttpWorker httpWorker)
+        public APIWorkerService(string baseAddress)
         {
-            _httpWorker = httpWorker;
+            _httpWorker = new HttpWorker();
             _baseAddress = baseAddress;
         }
 

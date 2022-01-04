@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace ServerHandler.Services
 {
-    internal class HttpWorker
+    sealed class HttpWorker
     {
-
         internal async Task<TResponse> PostByRequestAsync<TRequest, TResponse>(string url, TRequest request, Dictionary<string, string> headers = null) =>
            await GetResponseAsync<TResponse>(url, JsonConvert.SerializeObject(request), HttpMethod.Post, headers);
 
