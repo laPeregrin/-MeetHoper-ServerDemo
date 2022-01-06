@@ -5,7 +5,6 @@ namespace ChatUI
 {
     public partial class App : Application
     {
-        public static string User = "User";
         public App()
         {
             InitializeComponent();

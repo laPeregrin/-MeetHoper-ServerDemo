@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:ChatUI.ViewModels"
              x:Class="ChatUI.Views.LogIn"
              Shell.FlyoutBehavior="Disabled"
-             BindingContext="{Binding LoginViewModelm, Source={StaticResource ViewModelLocator}}">
+             BindingContext="{Binding LoginViewModel, Source={StaticResource ViewModelLocator}}">
     <Grid>
         <BoxView x:Name="bgGradient" Scale="4" AnchorX="1" AnchorY="0">
             <BoxView.Background>
@@ -25,11 +25,14 @@
        Opacity="0.5">
             <StackLayout Padding="40" VerticalOptions="Center"
                      HorizontalOptions="FillAndExpand">
+                <Label Text="Check your credentials and internet conenction" TextColor="Red" IsVisible="{Binding }">
+                
+                </Label>
                 <Label Text="Username:"/>
                 <Entry Text="{Binding Email}" Placeholder="Username"/>
                 <Label Text="Password:"/>
                 <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Password"/>
-                <Button Text="Login" Clicked="Button_Clicked"/>
+                <Button Text="Login" Command="{Binding LoginCmdAsync}"/>
                 <Label Text="Register" HorizontalOptions="Center">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>

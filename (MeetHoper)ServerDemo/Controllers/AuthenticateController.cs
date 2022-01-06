@@ -20,19 +20,34 @@ namespace _MeetHoper_ServerDemo.Controllers
             _userService = userService;
         }
 
-        [HttpPost("GetPairTokens")]
+        [HttpPost("Login")]
         [ProducesResponseType(typeof(Response<PairTokenResponse>), 200)]
-        public async Task<IActionResult> AuthenticateAsync([FromBody] AuthenticationUserTokenRequset userRequest)
+        public async Task<IActionResult> GetPairTokensAsync([FromBody] UserLoginRequest userRequest)
         {
             try
             {
-                return Ok(await _userService.AuthenticateAsync(userRequest));
+                return Ok(await _userService.LoginAsync(userRequest));
             }
             catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpPost("GetPairTokens")]
+        [ProducesResponseType(typeof(Response<PairTokenResponse>), 200)]
+        public async Task<IActionResult> LoginAsync([FromBody] AuthenticationUserTokenRequset userRequest)
+        {
+            try
+            {
+                return Ok(await _userService.GetPairTokensAsync(userRequest));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
 
         [HttpPost("CreateAccount")]
         [ProducesResponseType(typeof(Response<UserTokenResponse>), 200)]

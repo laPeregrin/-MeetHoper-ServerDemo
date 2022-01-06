@@ -30,13 +30,19 @@ namespace _MeetHoper_ServerDemo.Services
             _settings = settings.Value;
         }
 
-        public async Task<PairTokenResponse> AuthenticateAsync(AuthenticationUserTokenRequset userRequest)
+        public async Task<PairTokenResponse> LoginAsync(UserLoginRequest userRequest)
         {
-            var user = await _userHandler.GetEntityByIdAsync(userRequest.Client.Id);
-            if (user == null                                 ||
-                user.UserName != userRequest.Client.UserName || 
-                !await _passwordHasher.CompareLinesAsync(userRequest.Client.Password, user.Password))
-                throw new Exception(Constants.DoesNotExistText);
+            await ValidateUserData(userRequest);
+
+            return GeneratePairToken(_settings.AccessTokenExpirationMinutes);
+        }
+
+        public async Task<PairTokenResponse> GetPairTokensAsync(AuthenticationUserTokenRequset userRequest)
+        {
+            await ValidateUserData(userRequest.Client);
+
+            if (JWTGenerator.Validate(_settings, userRequest.RefreshToken))
+                throw new Exception(Constants.RefreshTokentNotValid);
 
             return GeneratePairToken(_settings.AccessTokenExpirationMinutes);
         }
@@ -67,6 +73,17 @@ namespace _MeetHoper_ServerDemo.Services
             userLoginRequest.Password = await _passwordHasher.CryptLineAsync(userLoginRequest.Password);
             user.UpdateByRequest(userLoginRequest);
             return await _userHandler.UpdateEntityAsync(user);
+        }
+
+        private async Task<bool> ValidateUserData(UserLoginRequest userLoginRequest)
+        {
+            var user = await _userHandler.GetEntityByIdAsync(userLoginRequest.Id);
+
+            if (user == null || user.UserName != userLoginRequest.UserName ||
+                !await _passwordHasher.CompareLinesAsync(userLoginRequest.Password, user.Password))
+                throw new Exception(Constants.DoesNotExistText);
+
+            return true;
         }
 
         private PairTokenResponse GeneratePairToken(int expiration) =>

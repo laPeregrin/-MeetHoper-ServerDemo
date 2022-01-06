@@ -5,7 +5,7 @@ namespace ChatUI.Services
 {
     public class RemoteDataInteractionService
     {
-        private readonly ServerHandler.Services.APIWorkerService _workerService;
+        private readonly APIWorkerService _workerService;
 
         public RemoteDataInteractionService(RemoteSettings remoteSettings)
         {

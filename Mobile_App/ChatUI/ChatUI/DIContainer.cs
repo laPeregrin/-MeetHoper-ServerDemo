@@ -1,5 +1,6 @@
 ﻿using ChatUI.Abstractions;
 using ChatUI.Factories;
+using ChatUI.Models;
 using ChatUI.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,11 +12,14 @@ namespace ChatUI
 
         public static void Init()
         {
-            var services = new ServiceCollection();
+            IServiceCollection services = new ServiceCollection();
 
             //helpers
+            services.AddSingleton<RemoteSettings>();
             services.AddSingleton<IFactory<int, System.Timers.Timer>, TimerFactory>();
 
+            //services
+            services.AddSingleton<IAPIInteraction>();
             //viewModels
             services.AddTransient<LoginViewModel>();
             services.AddTransient<RegistrationViewModel>();

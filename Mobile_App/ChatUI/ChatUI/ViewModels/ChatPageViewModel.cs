@@ -17,9 +17,7 @@ namespace ChatUI.ViewModels
 
         public ChatPageViewModel()
         {
-            Messages.Add(new Message() { Text = "Hi" });
-            Messages.Add(new Message() { Text = "Hello", User = App.User });
-            Messages.Add(new Message() { Text = "Test message"});
+
         }
 
         public ICommand SendMessageCommand => new AsyncCommand(async () =>
