@@ -1,6 +1,8 @@
 ﻿using ChatUI.Abstractions;
 using ChatUI.Factories;
+using ChatUI.Helpers;
 using ChatUI.Models;
+using ChatUI.Services;
 using ChatUI.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,9 +19,12 @@ namespace ChatUI
             //helpers
             services.AddSingleton<RemoteSettings>();
             services.AddSingleton<IFactory<int, System.Timers.Timer>, TimerFactory>();
+            services.AddSingleton<IIOManager, IOManager>();
 
             //services
-            services.AddSingleton<IAPIInteraction>();
+            services.AddSingleton<IAPIInteraction, RemoteDataInteractionService>();
+            services.AddSingleton<IIOManager, IOManager>();
+
             //viewModels
             services.AddTransient<LoginViewModel>();
             services.AddTransient<RegistrationViewModel>();

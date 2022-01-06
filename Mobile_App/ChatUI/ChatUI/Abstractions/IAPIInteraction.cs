@@ -8,9 +8,9 @@ namespace ChatUI.Abstractions
     {
         Task<bool> LoginAsync(string userName, string password);
 
-        Task<bool> Registration(string userName, string password, string description = "");
+        Task<bool> Registration(string userName, string password);
 
-        Task<UserResponse[]> GetUsersByGeolocationAsync(string userId, double longitude, double latitude);
+        Task<UserPublicDataResponse[]> GetUsersByGeolocationAsync(double longitude, double latitude);
 
         Task<User> UpdateUserDataAsync(User user);
     }

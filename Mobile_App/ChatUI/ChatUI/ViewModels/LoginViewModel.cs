@@ -40,8 +40,6 @@ namespace ChatUI.ViewModels
         }
 
         public ICommand LoginCmd => new AsyncCommand(async () =>
-        {
-            _loginResult = !await _aPIInteraction.LoginAsync(Email, Password);
-        }); 
+            _loginResult = !await _aPIInteraction.LoginAsync(Email, Password)); 
     }
 }

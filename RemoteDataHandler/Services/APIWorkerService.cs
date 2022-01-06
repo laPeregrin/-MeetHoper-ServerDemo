@@ -27,7 +27,21 @@ namespace ServerHandler.Services
             _baseAddress = baseAddress;
         }
 
-        public async Task<PairTokenResponse> GetPairTokens(AccessToken accessToken)
+        public async Task<PairTokenResponse> LoginAsync(AccessToken accessToken)
+        {
+            var request = new UserLoginRequest()
+            {
+                Id = accessToken.UserId,
+                Email = accessToken.Email,
+                UserName = accessToken.UserName,
+                Password = accessToken.Password,
+            };
+
+            var link = _baseAddress + GetPairsToken;
+            return await _httpWorker.PostByRequestAsync<UserLoginRequest, PairTokenResponse>(link, request);
+        }
+
+        public async Task<PairTokenResponse> GetPairTokensAsync(AccessToken accessToken)
         {
             var request = new AuthenticationUserTokenRequset()
             {
@@ -40,7 +54,7 @@ namespace ServerHandler.Services
                     Password = accessToken.Password,
                 }
             };
-            
+
             var link = _baseAddress + GetPairsToken;
             return await _httpWorker.PostByRequestAsync<AuthenticationUserTokenRequset, PairTokenResponse>(link, request);
         }
