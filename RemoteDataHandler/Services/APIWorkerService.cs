@@ -31,7 +31,6 @@ namespace ServerHandler.Services
         {
             var request = new UserLoginRequest()
             {
-                Id = accessToken.UserId,
                 Email = accessToken.Email,
                 UserName = accessToken.UserName,
                 Password = accessToken.Password,
@@ -48,7 +47,6 @@ namespace ServerHandler.Services
                 RefreshToken = accessToken.RefreshToken,
                 Client = new UserLoginRequest()
                 {
-                    Id = accessToken.UserId,
                     Email = accessToken.Email,
                     UserName = accessToken.UserName,
                     Password = accessToken.Password,

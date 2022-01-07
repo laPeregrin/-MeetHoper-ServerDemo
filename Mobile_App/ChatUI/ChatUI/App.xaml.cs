@@ -1,4 +1,5 @@
 ﻿using ChatUI.Views;
+using Microsoft.Extensions.DependencyInjection;
 using Xamarin.Forms;
 
 namespace ChatUI
@@ -9,7 +10,7 @@ namespace ChatUI
         {
             InitializeComponent();
             DIContainer.Init();
-            MainPage = new AppShell();
+            MainPage = DIContainer.Provider.GetRequiredService<AppShell>();
         }
 
         protected override void OnStart()

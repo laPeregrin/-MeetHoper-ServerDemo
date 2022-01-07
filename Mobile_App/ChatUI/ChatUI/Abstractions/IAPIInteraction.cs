@@ -12,6 +12,6 @@ namespace ChatUI.Abstractions
 
         Task<UserPublicDataResponse[]> GetUsersByGeolocationAsync(double longitude, double latitude);
 
-        Task<User> UpdateUserDataAsync(User user);
+        Task<bool> UpdateUserDataAsync(User user);
     }
 }

@@ -4,6 +4,7 @@ using ChatUI.Helpers;
 using ChatUI.Models;
 using ChatUI.Services;
 using ChatUI.ViewModels;
+using ChatUI.Views;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ChatUI
@@ -26,6 +27,7 @@ namespace ChatUI
             services.AddSingleton<IIOManager, IOManager>();
 
             //viewModels
+            services.AddSingleton<AppShell>();
             services.AddTransient<LoginViewModel>();
             services.AddTransient<RegistrationViewModel>();
             services.AddTransient<UserPageViewModel>();

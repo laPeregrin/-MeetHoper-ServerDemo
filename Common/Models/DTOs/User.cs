@@ -26,8 +26,8 @@ namespace Common.Models.DTOs
 
         public void UpdateByRequest(UpdateUserDataRequest request)
         {
-            UserName = request.UserName;
-            Email = request.Email;
+            //UserName = request.UserName;
+            //Email = request.Email;
             Password = request.Password;
             Description = request.Description;
             ImageUrl = request.ImageUrl;

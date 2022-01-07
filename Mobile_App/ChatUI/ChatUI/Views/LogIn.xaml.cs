@@ -6,20 +6,20 @@ using Xamarin.Forms.Xaml;
 namespace ChatUI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LogIn : ContentPage
+    public partial class LogInPage : ContentPage
     {
         private const string ForwardAnimation = "forward";
         private const string BackrwardAnimation = "backward";
 
         private Timer _timer;
 
-        public LogIn()
+        public LogInPage()
         {
             InitializeComponent();
             StartAnimation();
         }
 
-        ~LogIn()
+        ~LogInPage()
         {
             _timer.Stop();
             _timer.Dispose();

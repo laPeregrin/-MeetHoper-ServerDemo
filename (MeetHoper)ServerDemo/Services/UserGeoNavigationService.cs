@@ -32,8 +32,8 @@ namespace _MeetHoper_ServerDemo.Services
             if (!await _dataBaseUserHandler.IsEntityExistAsync(id))
                 throw new Exception(Constants.DoesNotExistText);
 
-            var users = await _cache.GetArrayByFuncIdAsync(g => IsNearLocation(geoposition, g) , id);
             await _cache.SetRecordAsync(id, geoposition, null);
+            var users = await _cache.GetArrayByFuncIdAsync(g => IsNearLocation(geoposition, g) , id);
 
             return new UserCollectionResponse(users);
         }

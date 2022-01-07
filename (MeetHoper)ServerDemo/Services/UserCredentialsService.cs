@@ -41,7 +41,7 @@ namespace _MeetHoper_ServerDemo.Services
         {
             await ValidateUserData(userRequest.Client);
 
-            if (JWTGenerator.Validate(_settings, userRequest.RefreshToken))
+            if (!JWTGenerator.Validate(_settings, userRequest.RefreshToken))
                 throw new Exception(Constants.RefreshTokentNotValid);
 
             return GeneratePairToken(_settings.AccessTokenExpirationMinutes);
@@ -77,11 +77,13 @@ namespace _MeetHoper_ServerDemo.Services
 
         private async Task<bool> ValidateUserData(UserLoginRequest userLoginRequest)
         {
-            var user = await _userHandler.GetEntityByIdAsync(userLoginRequest.Id);
+            var user = await _userHandler.GetEntityByActionAsync(u => u.UserName == userLoginRequest.UserName);
+            if (user == null)
+                throw new Exception(Constants.DoesNotExistText);
 
             if (user == null || user.UserName != userLoginRequest.UserName ||
                 !await _passwordHasher.CompareLinesAsync(userLoginRequest.Password, user.Password))
-                throw new Exception(Constants.DoesNotExistText);
+                throw new Exception(Constants.NotValidData);
 
             return true;
         }

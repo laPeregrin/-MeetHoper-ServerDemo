@@ -34,8 +34,17 @@ namespace ChatUI.Services
 
         public async Task<UserPublicDataResponse[]> GetUsersByGeolocationAsync(double longitude, double latitude)
         {
-            var users = await _workerService.GetUsersAround(_sessionToken, new Geoposition(longitude, latitude));
-            return users.UsersArray;
+            var result = default(UserCollectionResponse);
+            try
+            {
+                result = await _workerService.GetUsersAround(_sessionToken, new Geoposition(longitude, latitude));
+            }
+            catch
+            {
+                return Array.Empty<UserPublicDataResponse>();
+            }
+
+            return result.UsersArray;
         }
 
         public async Task<bool> LoginAsync(string userName, string password)
@@ -90,9 +99,26 @@ namespace ChatUI.Services
             return IsValidData;
         }
 
-        public Task<Common.Models.DTOs.User> UpdateUserDataAsync(Common.Models.DTOs.User user)
+        public async Task<bool> UpdateUserDataAsync(Common.Models.DTOs.User user)
         {
-            throw new System.NotImplementedException();
+            var res = false;
+            try
+            {
+                res = await _workerService.UpdateAccountAsync(_sessionToken, user.Description, user.ImageUrl);
+                if (res)
+                {
+                    _sessionToken.Description = user.Description;
+                    _sessionToken.UserName = user.UserName;
+                    _sessionToken.Password = user.Password;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+
+
+            return res;
         }
 
         private bool InitSessionToken()
