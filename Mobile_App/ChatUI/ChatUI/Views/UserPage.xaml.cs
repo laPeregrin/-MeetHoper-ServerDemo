@@ -12,13 +12,10 @@ namespace ChatUI.Views
 {
     public partial class UserPage : ContentPage
     {
-        public UserPageViewModel model;
-        public UserPage(UserPageViewModel m)
+        public UserPage()
         {
             InitializeComponent();
-
-            model = m;
-            BindingContext = model;
+            BindingContext = DIContainer.UserPageViewModel;
         }
     }
 }

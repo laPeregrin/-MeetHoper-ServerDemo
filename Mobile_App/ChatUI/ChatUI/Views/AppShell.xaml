@@ -36,7 +36,7 @@
             <ShellContent Route="MainPageDetail" ContentTemplate="{DataTemplate local:MainPageDetail}"/>
         </Tab>
     </FlyoutItem>
-    <FlyoutItem Title="Chats">
+    <FlyoutItem Title="User near you">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate local:NearUsersListPage}"/>
         </Tab>

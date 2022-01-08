@@ -9,15 +9,20 @@ namespace ChatUI.ViewModels
         private readonly IAPIInteraction _aPIInteraction;
         private string _password;
         private string _email;
-        private bool _loginResult = false;
 
-        public LoginViewModel(IAPIInteraction aPIInteraction)
+        private bool _failedLogin;
+        private bool _firstLaunch = true;
+
+        public bool FailedLogin
         {
-            _aPIInteraction = aPIInteraction;
+            get => _failedLogin && !_firstLaunch;
+            set 
+            { 
+              _failedLogin = value;
+              _firstLaunch = false;
+              RaisePropertiesChanged();
+            }
         }
-
-        public bool IsVisible { get => _loginResult;
-                                set { _loginResult = value; RaisePropertiesChanged(); } }
 
         public string Email
         {
@@ -40,6 +45,15 @@ namespace ChatUI.ViewModels
         }
 
         public ICommand LoginCmd => new AsyncCommand(async () =>
-            _loginResult = !await _aPIInteraction.LoginAsync(Email, Password)); 
+            _failedLogin = !await _aPIInteraction.LoginAsync(Email, Password));
+
+        public ICommand RedirectRegistration => new AsyncCommand(async () =>
+           await DIContainer.AppShell.MoveToRegistration());
+
+
+        public LoginViewModel(IAPIInteraction aPIInteraction)
+        {
+            _aPIInteraction = aPIInteraction;
+        }
     }
 }

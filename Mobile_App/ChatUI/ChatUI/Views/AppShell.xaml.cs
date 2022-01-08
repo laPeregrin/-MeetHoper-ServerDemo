@@ -39,5 +39,8 @@ namespace ChatUI.Views
                 await Current.GoToAsync($"//{nameof(LogInPage)}");
         }
 
+        public async Task MoveToRegistration() =>
+            await Current.GoToAsync($"//{nameof(RegistrationPage)}");
+
     }
 }

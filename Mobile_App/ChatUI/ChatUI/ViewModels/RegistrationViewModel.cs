@@ -1,4 +1,6 @@
 ﻿using ChatUI.Abstractions;
+using MvvmHelpers.Commands;
+using System.Windows.Input;
 
 namespace ChatUI.ViewModels
 {
@@ -7,6 +9,9 @@ namespace ChatUI.ViewModels
         private string _username;
         private string _password;
         private string _email;
+        private bool _signUpSuccess;
+
+        private readonly IAPIInteraction _aPIInteraction;
 
         public string Username
         {
@@ -15,6 +20,7 @@ namespace ChatUI.ViewModels
             {
                 _username = value;
                 RaisePropertyChanged();
+                RaisePropertyChanged(nameof(EnableSignUp));
             }
         }
         public string Password
@@ -24,6 +30,7 @@ namespace ChatUI.ViewModels
             {
                 _password = value;
                 RaisePropertyChanged();
+                RaisePropertyChanged(nameof(EnableSignUp));
             }
         }
 
@@ -36,5 +43,22 @@ namespace ChatUI.ViewModels
                 RaisePropertyChanged();
             }
         }
+
+        public bool EnableSignUp => _username.Length > 1 && _password.Length > 8;
+
+        public bool SignUpSuccess
+        {
+            get { return _signUpSuccess; }
+            set { _signUpSuccess = value; RaisePropertiesChanged(); }
+        }
+
+        public RegistrationViewModel(IAPIInteraction aPIInteraction)
+        {
+            _aPIInteraction = aPIInteraction;
+        }
+
+        public ICommand SignUpCmd => new AsyncCommand(async () =>
+          SignUpSuccess = !await _aPIInteraction.Registration(Username, Password));
+
     }
 }

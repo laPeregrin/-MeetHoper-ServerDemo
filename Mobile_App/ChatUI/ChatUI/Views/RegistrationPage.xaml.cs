@@ -1,11 +1,4 @@
-﻿using ChatUI.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ChatUI.Views
@@ -15,22 +8,9 @@ namespace ChatUI.Views
     {
         public RegistrationPage()
         {
-            BindingContext = new RegistrationViewModel();
             InitializeComponent();
+            BindingContext = DIContainer.RegistrationViewModel;
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            if (userName.Text != null)
-            {
-                Console.WriteLine($"{userName.Text}");
-                Console.WriteLine("Aboba");
-            }
-            else
-            {
-                DisplayAlert("Registration Failed", "Enter your details", "Okay", "Cancel");
-                Console.WriteLine($"{userName.Text}");
-            }
-        }
     }
 }

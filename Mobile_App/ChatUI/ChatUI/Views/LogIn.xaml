@@ -25,19 +25,15 @@
        Opacity="0.5">
             <StackLayout Padding="40" VerticalOptions="Center"
                      HorizontalOptions="FillAndExpand">
-                <Label Text="Check your credentials and internet conenction" TextColor="Red" IsVisible="{Binding }">
+                <Label Text="Check your credentials and internet conenction" TextColor="Red" IsVisible="{Binding FailedLogin}">
                 
                 </Label>
                 <Label Text="Username:"/>
                 <Entry Text="{Binding Email}" Placeholder="Username"/>
                 <Label Text="Password:"/>
                 <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Password"/>
-                <Button Text="Login" Command="{Binding LoginCmdAsync}"/>
-                <Label Text="Register" HorizontalOptions="Center">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                    </Label.GestureRecognizers>
-                </Label>
+                <Button WidthRequest="100" Text="Login" Command="{Binding LoginCmdAsync}"  HorizontalOptions="Center"/>
+                <Button Text="Register" HorizontalOptions="Center" Command="{Binding RedirectRegistration}"/>
             </StackLayout>
         </Frame>
     </Grid>

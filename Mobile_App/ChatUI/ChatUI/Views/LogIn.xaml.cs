@@ -16,6 +16,7 @@ namespace ChatUI.Views
         public LogInPage()
         {
             InitializeComponent();
+            BindingContext = DIContainer.LoginViewModel;
             StartAnimation();
         }
 

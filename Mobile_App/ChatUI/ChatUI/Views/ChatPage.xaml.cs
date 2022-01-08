@@ -9,6 +9,7 @@ namespace ChatUI.Views
         public ChatPage()
         {
             InitializeComponent();
+            BindingContext = DIContainer.ChatPageViewModel;
         }
     }
 }

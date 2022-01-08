@@ -2,24 +2,23 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:ChatUI.ViewModels"
              x:Class="ChatUI.Views.RegistrationPage"
-             Shell.FlyoutBehavior="Disabled">
+             Shell.FlyoutBehavior="Disabled"
+             BindingContext="{Binding RegistrationViewModel, Source={StaticResource ViewModelLocator}}">
     <ContentPage.Resources>
         <Color x:Key="TextColor">#000000</Color>
     </ContentPage.Resources>
-    <ContentPage.BindingContext>
-        <local:RegistrationViewModel/>
-    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout Padding="40" VerticalOptions="Center"
                      HorizontalOptions="FillAndExpand"
                      BackgroundColor="DarkGray">
-            <Label Text="Имя:"/>
-            <Entry Text="{Binding Username}" Placeholder="Введите имя" x:Name="userName"/>
-            <Label Text="Пароль:"/>
-            <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Введите пароль" x:Name="userPassword"/>
-            <Label Text="Почта:"/>
-            <Entry Text="{Binding Email}" Placeholder="Введите почту" x:Name="userEmail"/>
-            <Button Text="Зарегестрироваться" Clicked="Button_Clicked"/>
+            <Label Text="Username exist or check your internet connection" IsVisible="{Binding SignUpSuccess}" />
+            <Label Text="UserName:"/>
+            <Entry Text="{Binding Username}" Placeholder="UserName" x:Name="userName"/>
+            <Label Text="Password:"/>
+            <Entry Text="{Binding Password}" IsPassword="True" Placeholder="password" x:Name="userPassword"/>
+            <Label Text="Email:"/>
+            <Entry Text="{Binding Email}" Placeholder="email" x:Name="userEmail"/>
+            <Button Text="Sign Up" IsEnabled="{Binding EnableSignUp}" Command="{Binding }"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
