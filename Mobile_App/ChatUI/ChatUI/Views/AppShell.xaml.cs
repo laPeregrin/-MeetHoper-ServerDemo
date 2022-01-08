@@ -1,7 +1,7 @@
 ﻿using ChatUI.Abstractions;
 using ChatUI.Helpers;
 using System;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,10 +18,9 @@ namespace ChatUI.Views
 
             _iOManager = iOManager;
             Routing.RegisterRoute("//RegistrationPage", typeof(RegistrationPage));
+            Routing.RegisterRoute("//NearUsersListPage", typeof(NearUsersListPage));
             Routing.RegisterRoute("//ProfilePage", typeof(ProfilePage));
-            Routing.RegisterRoute("//LogIn", typeof(LogInPage));
-
-            InitStartUpPage();
+            Routing.RegisterRoute("//LogInPage", typeof(LogInPage));
         }
 
         #region UIHandler
@@ -33,11 +32,11 @@ namespace ChatUI.Views
 
         #endregion //UIHandler
 
-        private void InitStartUpPage()
+        public async Task InitStartUpPageAsync()
         {
             var value = _iOManager.ReadAll(PathHelper.UserCredentialFile);
             if (string.IsNullOrEmpty(value))
-                Current.GoToAsync($"//{nameof(LogInPage)}");
+                await Current.GoToAsync($"//{nameof(LogInPage)}");
         }
 
     }

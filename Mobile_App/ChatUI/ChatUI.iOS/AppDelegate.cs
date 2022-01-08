@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
+using System.Diagnostics;
+using System.Threading.Tasks;
 using Foundation;
 using UIKit;
 
@@ -25,7 +24,42 @@ namespace ChatUI.iOS
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
+            TaskScheduler.UnobservedTaskException += TaskSchedulerOnUnobservedTaskException;
             return base.FinishedLaunching(app, options);
         }
+
+        private static void TaskSchedulerOnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs unobservedTaskExceptionEventArgs)
+        {
+            var newExc = new Exception("TaskSchedulerOnUnobservedTaskException", unobservedTaskExceptionEventArgs.Exception);
+            LogUnhandledException(newExc);
+        }
+
+        private static void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs unhandledExceptionEventArgs)
+        {
+            var newExc = new Exception("CurrentDomainOnUnhandledException", unhandledExceptionEventArgs.ExceptionObject as Exception);
+            LogUnhandledException(newExc);
+        }
+
+        internal static void LogUnhandledException(Exception exception)
+        {
+            try
+            {
+                DisplayCrashReport(exception.Message);
+            }
+            catch
+            {
+                // just suppress any error logging exceptions
+            }
+        }
+
+        [Conditional("DEBUG")]
+        private static void DisplayCrashReport(string errorText)
+        {
+            var alertView = new UIAlertView("Crash Report", errorText, null, "Close", "Clear") { UserInteractionEnabled = true };
+
+            alertView.Show();
+        }
+
     }
 }

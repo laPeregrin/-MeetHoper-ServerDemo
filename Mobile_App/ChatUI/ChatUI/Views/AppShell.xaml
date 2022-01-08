@@ -38,17 +38,17 @@
     </FlyoutItem>
     <FlyoutItem Title="Chats">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate local:ChatPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate local:NearUsersListPage}"/>
         </Tab>
     </FlyoutItem>
-    <FlyoutItem Title="Settigns">
+    <!--<FlyoutItem Title="Settigns">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate local:ChatPage}"/>
         </Tab>
-    </FlyoutItem>
+    </FlyoutItem>-->
     <FlyoutItem Title="Leave">
         <Tab>
-            <ShellContent Route="MainPageDetail" ContentTemplate="{DataTemplate local:LogIn}"/>
+            <ShellContent Route="MainPageDetail" ContentTemplate="{DataTemplate local:LogInPage}"/>
         </Tab>
     </FlyoutItem>
 </Shell>

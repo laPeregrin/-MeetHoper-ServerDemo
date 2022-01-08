@@ -33,6 +33,7 @@ namespace ChatUI
             services.AddTransient<UserPageViewModel>();
             services.AddTransient<ChatPageViewModel>();
             services.AddTransient<ProfileViewModel>();
+            services.AddSingleton<NearUsersListViewModel>();
 
             Provider = services.BuildServiceProvider();
 #if DEBUG
@@ -47,5 +48,7 @@ namespace ChatUI
         public static UserPageViewModel UserPageViewModel => Provider.GetRequiredService<UserPageViewModel>();
         public static ChatPageViewModel ChatPageViewModel => Provider.GetRequiredService<ChatPageViewModel>();
         public static ProfileViewModel ProfileViewModel => Provider.GetRequiredService<ProfileViewModel>();
+        public static NearUsersListViewModel NearUsersListViewModel => Provider.GetRequiredService<NearUsersListViewModel>();
+        public static AppShell AppShell => Provider.GetRequiredService<AppShell>();
     }
 }

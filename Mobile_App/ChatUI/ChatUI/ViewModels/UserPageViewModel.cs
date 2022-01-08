@@ -5,11 +5,11 @@ namespace ChatUI.ViewModels
 {
     public class UserPageViewModel : ViewModelBase
     {
-        private User _user;
+        private UserDataModel _user;
 
         public UserPageViewModel()
         {
-            _user = new User();
+            _user = new UserDataModel();
         }
 
         public string Name
