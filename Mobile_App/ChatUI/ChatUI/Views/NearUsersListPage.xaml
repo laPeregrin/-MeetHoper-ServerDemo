@@ -12,13 +12,17 @@
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="model:UserDataModel">
                 <ViewCell>
-                    <Grid Padding="7">
+                    <Grid Padding="10">
                         <Frame>
                             <StackLayout Orientation="Horizontal">
-                                <Image Source="{Binding Image}" WidthRequest="150"/>
-                                    <!--<StackLayout VerticalOptions="Center">
+                                <Image Source="{Binding Image}" WidthRequest="150">
+                                    <Image.Clip>
+                                        <EllipseGeometry RadiusX="70" RadiusY="70" Center="75, 75"/>
+                                    </Image.Clip>
+                                </Image>
+                                <StackLayout VerticalOptions="Center">
                                         <Label Text="{Binding Name}" FontSize="14" TextColor="Black"/>
-                                </StackLayout>-->
+                                </StackLayout>
                             </StackLayout>
                         </Frame>
                     </Grid>

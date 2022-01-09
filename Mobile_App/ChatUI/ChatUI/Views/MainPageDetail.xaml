@@ -3,6 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChatUI.Views.MainPageDetail"
              Title="Detail">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="labelDesign">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <StackLayout Padding="10" BackgroundColor="White">
         <Grid Padding="10">
                 <Frame BorderColor="Black"
@@ -11,14 +19,12 @@
                     <Image Source="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" WidthRequest="66" x:Name="userImage"/>
                         <StackLayout VerticalOptions="Center">
                             <Label
-                            TextColor="Black"
+                            Style="{StaticResource labelDesign}"
                             Text="Имя"
-                            x:Name="userName"
-                            VerticalOptions="Center"/>
+                            x:Name="userName"/>
                             <Label
-                            TextColor="Black"
-                            Text="Пример текста описания"
-                            VerticalOptions="Center"/>
+                            Style="{StaticResource labelDesign}"
+                            Text="Пример текста описания"/>
                         </StackLayout>
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnTapped"/>
@@ -33,13 +39,11 @@
                     <Image Source="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" WidthRequest="66"/>
                         <StackLayout VerticalOptions="Center">
                             <Label
-                            TextColor="Black"
-                            Text="Имя"
-                            VerticalOptions="Center"/>
+                            Style="{StaticResource labelDesign}"
+                            Text="Имя"/>
                             <Label
-                            TextColor="Black"
-                            Text="Пример текста описания"
-                            VerticalOptions="Center"/>
+                            Style="{StaticResource labelDesign}"
+                            Text="Пример текста описания"/>
                         </StackLayout>
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnTapped"/>
@@ -54,13 +58,11 @@
                     <Image Source="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" WidthRequest="66"/>
                         <StackLayout VerticalOptions="Center">
                             <Label
-                            TextColor="Black"
-                            Text="Имя"
-                            VerticalOptions="Center"/>
+                            Style="{StaticResource labelDesign}"
+                            Text="Имя"/>
                             <Label
-                            TextColor="Black"
-                            Text="Пример текста в описании"
-                            VerticalOptions="Center"/>
+                            Style="{StaticResource labelDesign}"
+                            Text="Пример текста в описании"/>
                         </StackLayout>
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnTapped"/>
