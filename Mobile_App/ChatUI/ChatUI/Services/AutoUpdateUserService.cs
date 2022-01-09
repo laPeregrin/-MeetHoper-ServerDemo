@@ -38,10 +38,8 @@ namespace ChatUI.Services
             _timer.Start();
         }
 
-        private void _timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        private async void _timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e) =>
+            await UpdateUserList();
 
         private async Task UpdateUserList()
         {

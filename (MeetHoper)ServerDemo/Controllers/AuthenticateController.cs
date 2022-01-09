@@ -20,7 +20,7 @@ namespace _MeetHoper_ServerDemo.Controllers
             _userService = userService;
         }
 
-        [HttpPost("Login")]
+        [HttpPost("GetPairTokens")]
         [ProducesResponseType(typeof(Response<PairTokenResponse>), 200)]
         public async Task<IActionResult> GetPairTokensAsync([FromBody] AuthenticationUserTokenRequset userRequest)
         {
@@ -34,7 +34,7 @@ namespace _MeetHoper_ServerDemo.Controllers
             }
         }
 
-        [HttpPost("GetPairTokens")]
+        [HttpPost("Login")]
         [ProducesResponseType(typeof(Response<PairTokenResponse>), 200)]
         public async Task<IActionResult> LoginAsync([FromBody] UserLoginRequest userRequest)
         {

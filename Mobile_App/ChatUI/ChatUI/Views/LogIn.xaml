@@ -32,7 +32,7 @@
                 <Entry Text="{Binding Email}" Placeholder="Username"/>
                 <Label Text="Password:"/>
                 <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Password"/>
-                <Button WidthRequest="100" Text="Login" Command="{Binding LoginCmdAsync}"  HorizontalOptions="Center"/>
+                <Button WidthRequest="100" Text="Login" Command="{Binding LoginCmd}"  HorizontalOptions="Center"/>
                 <Button Text="Register" HorizontalOptions="Center" Command="{Binding RedirectRegistration}"/>
             </StackLayout>
         </Frame>

@@ -52,7 +52,7 @@ namespace ChatUI.Services
             var pairsToken = default(PairTokenResponse);
             try
             {
-                if (!InitSessionToken())
+                if (!InitSessionToken(userName, password))
                 {
                     pairsToken = await _workerService.LoginAsync(new AccessToken()
                     {
@@ -65,7 +65,7 @@ namespace ChatUI.Services
                     pairsToken = await _workerService.GetPairTokensAsync(_sessionToken);
                 }
             }
-            catch
+            catch (Exception e)
             {
                 return false;
             }
@@ -80,13 +80,13 @@ namespace ChatUI.Services
 
         public async Task<bool> Registration(string userName, string password)
         {
-            var sessionToken = new SessionToken(userName, password);
+            InitSessionToken(userName, password);
             var userTokenResponse = default(UserTokenResponse);
             try
             {
-                userTokenResponse = await _workerService.CreateAccountAsync(sessionToken);
+                userTokenResponse = await _workerService.CreateAccountAsync(_sessionToken);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return false;
             }
@@ -94,7 +94,7 @@ namespace ChatUI.Services
             if (userTokenResponse == null)
                 return false;
 
-            sessionToken.UpdateByUserTokenResponse(userTokenResponse, password);
+            _sessionToken.UpdateByUserTokenResponse(userTokenResponse, password);
 
             return IsValidData;
         }
@@ -121,16 +121,20 @@ namespace ChatUI.Services
             return res;
         }
 
-        private bool InitSessionToken()
+        private bool InitSessionToken(string userName, string password)
         {
-            if (_sessionToken == null)
+            if (IsValidData)
+            {
                 _sessionToken = new SessionToken(GetAccessToken(PathHelper.UserCredentialFile));
+                _sessionToken.UserName = userName;
+                _sessionToken.Password = password;
+            }
 
-            return _sessionToken != null;
+            return IsValidData;
         }
 
         private AccessToken GetAccessToken(string path) =>
-            _iOManager.ReadAll<AccessToken>(path);
+            _iOManager.ReadAll<AccessToken>(path) ?? new AccessToken();
 
     }
 }
