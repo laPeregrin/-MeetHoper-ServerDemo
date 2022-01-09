@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "(MeetHoper)ServerDemo", "(MeetHoper)ServerDemo\(MeetHoper)ServerDemo.csproj", "{7A63CEE5-9AD2-4BBF-9234-439B35B14C57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetHoper_ServerDemo", "(MeetHoper)ServerDemo\MeetHoper_ServerDemo.csproj", "{7A63CEE5-9AD2-4BBF-9234-439B35B14C57}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{5348F328-5215-49AD-A97F-7BE3DCB94C87}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Source", "Source\Source.csproj", "{66250F51-2CDF-46AC-AB8C-A3A9A853C2DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteDataHandler", "RemoteDataHandler\RemoteDataHandler.csproj", "{9B4F151E-FA47-449A-8230-471116C3D4FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemoteDataHandler", "RemoteDataHandler\RemoteDataHandler.csproj", "{9B4F151E-FA47-449A-8230-471116C3D4FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

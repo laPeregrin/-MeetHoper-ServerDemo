@@ -16,11 +16,11 @@ namespace ChatUI.ViewModels
         public bool FailedLogin
         {
             get => _failedLogin && !_firstLaunch;
-            set 
-            { 
-              _failedLogin = value;
-              _firstLaunch = false;
-              RaisePropertiesChanged();
+            set
+            {
+                _failedLogin = value;
+                _firstLaunch = false;
+                RaisePropertiesChanged();
             }
         }
 
@@ -45,10 +45,14 @@ namespace ChatUI.ViewModels
         }
 
         public ICommand LoginCmd => new AsyncCommand(async () =>
-            _failedLogin = !await _aPIInteraction.LoginAsync(Email, Password));
+        {
+            _failedLogin = !await _aPIInteraction.LoginAsync(Email, Password);
+            if (!_failedLogin)
+                await DIContainer.AppShell.MoveToGeneralAsync();
+        });
 
         public ICommand RedirectRegistration => new AsyncCommand(async () =>
-           await DIContainer.AppShell.MoveToRegistration());
+           await DIContainer.AppShell.MoveToRegistrationAsync());
 
 
         public LoginViewModel(IAPIInteraction aPIInteraction)
