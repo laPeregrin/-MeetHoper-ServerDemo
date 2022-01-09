@@ -2,12 +2,29 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChatUI.Views.NearUsersListPage"
-             xmlns:dxcv="http://schemas.devexpress.com/xamarin/2014/forms/collectionview"
+             xmlns:dxcv="http://schemas.devexpress.com/xamarin/2014/forms/collectionview" xmlns:model="clr-namespace:ChatUI.Models"
              BindingContext="{Binding NearUsersListViewModel, Source={StaticResource ViewModelLocator}}">
     <ListView ItemsSource="{Binding UsersNear}"
                            SelectionMode="Single"
                            SelectedItem="{Binding UserDataModel}"
-                           BackgroundColor="Black">
+                           BackgroundColor="Black"
+                           HasUnevenRows="True">
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="model:UserDataModel">
+                <ViewCell>
+                    <Grid Padding="7">
+                        <Frame>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding Image}" WidthRequest="150"/>
+                                    <!--<StackLayout VerticalOptions="Center">
+                                        <Label Text="{Binding Name}" FontSize="14" TextColor="Black"/>
+                                </StackLayout>-->
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
         <!--<dxcv:DXCollectionView.ItemTemplate>
             <DataTemplate>
                 <dxcv:SwipeContainer>
@@ -28,5 +45,4 @@
             </DataTemplate>
         </dxcv:DXCollectionView.ItemTemplate>-->
     </ListView>
-    
 </ContentPage>

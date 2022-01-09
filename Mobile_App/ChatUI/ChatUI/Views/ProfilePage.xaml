@@ -12,7 +12,7 @@
                         <EllipseGeometry RadiusX="70" RadiusY="70" Center="180,100"/>
                     </Image.Clip>
                 </Image>
-                <Label Text="{Binding Path=Rate,
+                <Label Text="{Binding Rate,
                     StringFormat='Твой рейтинг: {0}'}" HorizontalOptions="Center" TextColor="Black"/>
                 <Editor Text="{Binding MyStringProperty}" FontSize="24" TextColor="Black" AutoSize="TextChanges"/>
             </StackLayout>

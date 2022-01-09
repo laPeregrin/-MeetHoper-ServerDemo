@@ -8,7 +8,7 @@
                 <Frame BorderColor="Black"
                    CornerRadius="20">
                     <StackLayout Orientation="Horizontal">
-                    <Image Source="Vladik.jpg" WidthRequest="66" x:Name="userImage"/>
+                    <Image Source="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" WidthRequest="66" x:Name="userImage"/>
                         <StackLayout VerticalOptions="Center">
                             <Label
                             TextColor="Black"
@@ -30,7 +30,7 @@
                 <Frame BorderColor="Black"
                    CornerRadius="20">
                     <StackLayout Orientation="Horizontal">
-                    <Image Source="Vladik.jpg" WidthRequest="66"/>
+                    <Image Source="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" WidthRequest="66"/>
                         <StackLayout VerticalOptions="Center">
                             <Label
                             TextColor="Black"
@@ -51,7 +51,7 @@
                 <Frame BorderColor="Black"
                    CornerRadius="20">
                     <StackLayout Orientation="Horizontal">
-                    <Image Source="Vladik.jpg" WidthRequest="66"/>
+                    <Image Source="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" WidthRequest="66"/>
                         <StackLayout VerticalOptions="Center">
                             <Label
                             TextColor="Black"

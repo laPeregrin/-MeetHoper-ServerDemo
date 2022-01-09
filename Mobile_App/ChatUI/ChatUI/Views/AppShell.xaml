@@ -2,7 +2,8 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:ChatUI.Views"
-             x:Class="ChatUI.Views.AppShell">
+             x:Class="ChatUI.Views.AppShell"
+             BackgroundColor="{DynamicResource BackgroundColor}">
     <Shell.Resources>
         <ResourceDictionary>
             <Color x:Key="ThemeColor">#EF3D55</Color>

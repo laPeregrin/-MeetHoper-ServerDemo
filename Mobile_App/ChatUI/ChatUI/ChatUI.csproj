@@ -122,6 +122,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="TemplatesSource\DarkThemeMode.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\NearUsersListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

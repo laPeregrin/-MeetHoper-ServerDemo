@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:ChatUI"
              x:Class="ChatUI.App">
     <Application.Resources>
+        <ResourceDictionary Source="TemplatesSource/DarkThemeMode.xaml"/>
         <local:DIContainer x:Key="ViewModelLocator"/>
     </Application.Resources>
 </Application>

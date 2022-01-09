@@ -3,21 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:ChatUI.ViewModels"
              x:Class="ChatUI.Views.RegistrationPage"
              Shell.FlyoutBehavior="Disabled"
+             BackgroundColor="#66e0d6"
              BindingContext="{Binding RegistrationViewModel, Source={StaticResource ViewModelLocator}}">
     <ContentPage.Resources>
         <Color x:Key="TextColor">#000000</Color>
+        <Style TargetType="Label" x:Key="labelStyle">
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Padding="40" VerticalOptions="Center"
                      HorizontalOptions="FillAndExpand"
-                     BackgroundColor="DarkGray">
-            <Label Text="Username exist or check your internet connection" IsVisible="{Binding SignUpSuccess}" />
-            <Label Text="UserName:"/>
-            <Entry Text="{Binding Username}" Placeholder="UserName" x:Name="userName"/>
-            <Label Text="Password:"/>
-            <Entry Text="{Binding Password}" IsPassword="True" Placeholder="password" x:Name="userPassword"/>
-            <Label Text="Email:"/>
-            <Entry Text="{Binding Email}" Placeholder="email" x:Name="userEmail"/>
+                     BackgroundColor="#ada86d">
+            <Label Style="{StaticResource labelStyle}"
+                   Text="Username exist or check your internet connection" 
+                   IsVisible="{Binding SignUpSuccess}"/>
+            <Label Style="{StaticResource labelStyle}"
+                   Text="UserName:"/>
+            <Entry Text="{Binding Username}" 
+                   Placeholder="UserName" 
+                   x:Name="userName"/>
+            <Label Style="{StaticResource labelStyle}"
+                   Text="Password:"/>
+            <Entry Text="{Binding Password}" 
+                   IsPassword="True" 
+                   Placeholder="password" 
+                   x:Name="userPassword"/>
+            <Label Style="{StaticResource labelStyle}"
+                   Text="Email:"/>
+            <Entry Text="{Binding Email}" 
+                   Placeholder="email" 
+                   x:Name="userEmail"/>
             <Button Text="Sign Up" IsEnabled="{Binding EnableSignUp}" Command="{Binding SignUpCmd}"/>
         </StackLayout>
     </ContentPage.Content>

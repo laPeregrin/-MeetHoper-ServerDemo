@@ -1,4 +1,6 @@
-﻿namespace ChatUI.Models
+﻿using Xamarin.Forms;
+
+namespace ChatUI.Models
 {
     public class UserDataModel
     {

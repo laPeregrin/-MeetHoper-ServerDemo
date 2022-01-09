@@ -11,6 +11,5 @@ namespace ChatUI.Views
             InitializeComponent();
             BindingContext = DIContainer.NearUsersListViewModel;
         }
-
     }
 }
