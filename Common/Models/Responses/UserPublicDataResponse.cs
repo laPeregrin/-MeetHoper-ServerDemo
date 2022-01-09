@@ -9,6 +9,5 @@ namespace Common.Models.Responses
         public double Rate { get; set; }
         public string Description { get; set; }
 
-        public UserPublicDataResponse() { }
     }
 }

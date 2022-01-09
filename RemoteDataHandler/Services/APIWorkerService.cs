@@ -11,7 +11,7 @@ namespace ServerHandler.Services
     public class APIWorkerService
     {
         private const string AuthorizationHeader = "Authorization";
-        private const string AuthenticateEndpoint = "Authenticate";
+        private const string AuthenticateEndpoint = "/Authenticate";
         private const string GeoDataNavigationEndpoint = "GeoDataNavigation/GetUsersNear";
 
         private const string GetPairsToken = AuthenticateEndpoint + "/GetPairTokens";

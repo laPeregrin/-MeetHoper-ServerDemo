@@ -2,6 +2,6 @@
 {
     public class RemoteSettings
     {
-        public string BaseAdress { get; set; }
+        public string BaseAdress { get; set; } = "https://localhost:5001";
     }
 }

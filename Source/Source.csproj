@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\(MeetHoper)ServerDemo\(MeetHoper)ServerDemo.csproj" />
+    <ProjectReference Include="..\RemoteDataHandler\RemoteDataHandler.csproj" />
   </ItemGroup>
 
 </Project>

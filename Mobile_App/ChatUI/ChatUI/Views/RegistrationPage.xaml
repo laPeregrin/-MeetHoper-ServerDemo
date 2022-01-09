@@ -18,7 +18,7 @@
             <Entry Text="{Binding Password}" IsPassword="True" Placeholder="password" x:Name="userPassword"/>
             <Label Text="Email:"/>
             <Entry Text="{Binding Email}" Placeholder="email" x:Name="userEmail"/>
-            <Button Text="Sign Up" IsEnabled="{Binding EnableSignUp}" Command="{Binding }"/>
+            <Button Text="Sign Up" IsEnabled="{Binding EnableSignUp}" Command="{Binding SignUpCmd}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

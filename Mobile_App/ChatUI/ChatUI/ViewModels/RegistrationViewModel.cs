@@ -6,9 +6,9 @@ namespace ChatUI.ViewModels
 {
     public class RegistrationViewModel : ViewModelBase
     {
-        private string _username;
-        private string _password;
-        private string _email;
+        private string _username = string.Empty;
+        private string _password = string.Empty;
+        private string _email = string.Empty;
         private bool _signUpSuccess;
 
         private readonly IAPIInteraction _aPIInteraction;

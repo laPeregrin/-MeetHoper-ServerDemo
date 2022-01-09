@@ -86,7 +86,7 @@ namespace ChatUI.Services
             {
                 userTokenResponse = await _workerService.CreateAccountAsync(sessionToken);
             }
-            catch
+            catch(Exception e)
             {
                 return false;
             }

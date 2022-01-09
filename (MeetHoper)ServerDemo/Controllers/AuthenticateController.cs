@@ -22,11 +22,11 @@ namespace _MeetHoper_ServerDemo.Controllers
 
         [HttpPost("Login")]
         [ProducesResponseType(typeof(Response<PairTokenResponse>), 200)]
-        public async Task<IActionResult> GetPairTokensAsync([FromBody] UserLoginRequest userRequest)
+        public async Task<IActionResult> GetPairTokensAsync([FromBody] AuthenticationUserTokenRequset userRequest)
         {
             try
             {
-                return Ok(await _userService.LoginAsync(userRequest));
+                return Ok(await _userService.GetPairTokensAsync(userRequest));
             }
             catch (Exception e)
             {
@@ -36,11 +36,11 @@ namespace _MeetHoper_ServerDemo.Controllers
 
         [HttpPost("GetPairTokens")]
         [ProducesResponseType(typeof(Response<PairTokenResponse>), 200)]
-        public async Task<IActionResult> LoginAsync([FromBody] AuthenticationUserTokenRequset userRequest)
+        public async Task<IActionResult> LoginAsync([FromBody] UserLoginRequest userRequest)
         {
             try
             {
-                return Ok(await _userService.GetPairTokensAsync(userRequest));
+                return Ok(await _userService.LoginAsync(userRequest));
             }
             catch (Exception e)
             {

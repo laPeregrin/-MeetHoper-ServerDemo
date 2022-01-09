@@ -4,6 +4,11 @@
     {
         public string Email { get; set; }
 
+        public UserResponse()
+        {
+
+        }
+
         public UserResponse(DTOs.User user)
         {
             Id = user.Id;

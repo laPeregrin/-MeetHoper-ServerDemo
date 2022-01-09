@@ -23,6 +23,7 @@ namespace ServerHandler.Services
         {
             var request = new HttpRequestMessage()
             {
+                Method = httpMethod,
                 RequestUri = new Uri(url),
                 Content = string.IsNullOrEmpty(content) ? null :
                                                           new StringContent(content, Encoding.UTF8, "application/json"),

@@ -49,11 +49,6 @@ namespace ChatUI.Views
             bgGradient.Animate(name: BackrwardAnimation, callback: backward, start: 1, end: 0, length: 5000, easing: Easing.SinIn);
         }
 
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync($"//{nameof(MainPageDetail)}");
-        }
-
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync($"//{nameof(RegistrationPage)}");
