@@ -3,37 +3,47 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:ChatUI.ViewModels"
              x:Class="ChatUI.Views.RegistrationPage"
              Shell.FlyoutBehavior="Disabled"
-             BackgroundColor="#66e0d6">
+             BackgroundColor="#66e0d6"
+             BindingContext="{Binding RegistrationViewModel, Source={StaticResource ViewModelLocator}}">
     <ContentPage.Resources>
         <Color x:Key="TextColor">#000000</Color>
         <Style TargetType="Label" x:Key="labelStyle">
-            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="TextColor" Value="White"/>
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Padding="40" VerticalOptions="Center"
+        <Frame
+            BorderColor="Transparent"
+            HeightRequest="400"
+            WidthRequest="350"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            BackgroundColor="#66e0d6"
+            Opacity="1">
+            <StackLayout Padding="35" VerticalOptions="Center"
                      HorizontalOptions="FillAndExpand"
-                     BackgroundColor="#ada86d">
-            <Label Style="{StaticResource labelStyle}"
+                     BackgroundColor="#404040">
+                <Label Style="{StaticResource labelStyle}"
                    Text="Username exist or check your internet connection" 
-                   IsVisible="{Binding SignUpFailed}"/>
-            <Label Style="{StaticResource labelStyle}"
-                   Text="UserName:"/>
-            <Entry Text="{Binding Username}" 
-                   Placeholder="UserName" 
+                   IsVisible="{Binding SignUpSuccess}"/>
+                <Label Style="{StaticResource labelStyle}"
+                   Text="Name:"/>
+                <Entry Text="{Binding Username}" 
+                   Placeholder="Your name" 
                    x:Name="userName"/>
-            <Label Style="{StaticResource labelStyle}"
+                <Label Style="{StaticResource labelStyle}"
                    Text="Password:"/>
-            <Entry Text="{Binding Password}" 
+                <Entry Text="{Binding Password}" 
                    IsPassword="True" 
-                   Placeholder="password" 
+                   Placeholder="Password" 
                    x:Name="userPassword"/>
-            <Label Style="{StaticResource labelStyle}"
+                <Label Style="{StaticResource labelStyle}"
                    Text="Email:"/>
-            <Entry Text="{Binding Email}" 
-                   Placeholder="email" 
+                <Entry Text="{Binding Email}" 
+                   Placeholder="Email" 
                    x:Name="userEmail"/>
-            <Button Text="Sign Up" IsEnabled="{Binding EnableSignUp}" Command="{Binding SignUpCmd}"/>
-        </StackLayout>
+                <Button Text="Sign Up" IsEnabled="{Binding EnableSignUp}" Command="{Binding SignUpCmd}"/>
+            </StackLayout>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>
