@@ -15,6 +15,7 @@ namespace ServerHandler.Services
         private const string GeoDataNavigationEndpoint = "GeoDataNavigation/GetUsersNear";
 
         private const string GetPairsToken = AuthenticateEndpoint + "/GetPairTokens";
+        private const string Login = AuthenticateEndpoint + "/Login";
         private const string CreateAccount = AuthenticateEndpoint + "/CreateAccount";
         private const string UpdateAccount = AuthenticateEndpoint + "/UpdateAccount";
 
@@ -31,12 +32,12 @@ namespace ServerHandler.Services
         {
             var request = new UserLoginRequest()
             {
-                Email = accessToken.Email,
+                Email = string.IsNullOrEmpty(accessToken.Email) ? accessToken.UserName : accessToken.Email,
                 UserName = accessToken.UserName,
                 Password = accessToken.Password,
             };
 
-            var link = _baseAddress + GetPairsToken;
+            var link = _baseAddress + Login;
             return await _httpWorker.PostByRequestAsync<UserLoginRequest, PairTokenResponse>(link, request);
         }
 
@@ -47,7 +48,7 @@ namespace ServerHandler.Services
                 RefreshToken = accessToken.RefreshToken,
                 Client = new UserLoginRequest()
                 {
-                    Email = accessToken.Email,
+                    Email = string.IsNullOrEmpty(accessToken.Email) ? accessToken.UserName : accessToken.Email,
                     UserName = accessToken.UserName,
                     Password = accessToken.Password,
                 }
@@ -61,7 +62,7 @@ namespace ServerHandler.Services
         {
             var request = new CreateAccountRequest()
             {
-                Email = accessToken.Email,
+                Email = string.IsNullOrEmpty(accessToken.Email) ? accessToken.UserName : accessToken.Email,
                 UserName = accessToken.UserName,
                 Password = accessToken.Password,
             };

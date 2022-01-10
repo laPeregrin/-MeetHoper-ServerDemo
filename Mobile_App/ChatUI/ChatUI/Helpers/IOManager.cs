@@ -59,6 +59,9 @@ namespace ChatUI.Helpers
 
             if (string.IsNullOrEmpty(data))
                 throw new ArgumentNullException(nameof(data));
+
+            DeleteFile(path);
+
             try
             {
                 using (var stream = File.Create(path))

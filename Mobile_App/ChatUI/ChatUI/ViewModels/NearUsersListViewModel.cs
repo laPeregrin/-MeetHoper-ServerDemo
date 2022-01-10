@@ -1,4 +1,5 @@
 ﻿using ChatUI.Abstractions;
+using ChatUI.Helpers;
 using ChatUI.Models;
 using System;
 using System.Collections.ObjectModel;
@@ -23,7 +24,7 @@ namespace ChatUI.ViewModels
 
         private void _timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            var _image = "https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png";
+            var _image = PathHelper.DefaultImageUrl;    
             UsersNear.Add(new UserDataModel()
             {
                 Id = Guid.NewGuid().ToString(),

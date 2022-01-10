@@ -44,9 +44,12 @@ namespace ChatUI.ViewModels
             }
         }
 
-        public bool EnableSignUp => _username.Length > 1 && _password.Length > 8;
+        public bool EnableSignUp => _username.Length > 1 &&
+                                    _password.Length > 8 &&
+                                    _email.Length > 5 &&
+                                    _email.Contains("@");
 
-        public bool SignUpSuccess
+        public bool SignUpFailed
         {
             get { return _signUpSuccess; }
             set { _signUpSuccess = value; RaisePropertiesChanged(); }
@@ -58,7 +61,11 @@ namespace ChatUI.ViewModels
         }
 
         public ICommand SignUpCmd => new AsyncCommand(async () =>
-          SignUpSuccess = !await _aPIInteraction.Registration(Username, Password));
+        {
+            SignUpFailed = !await _aPIInteraction.Registration(Username, Password, Email);
+            if (!SignUpFailed)
+                await DIContainer.AppShell.MoveToListAsync();
+        });
 
     }
 }

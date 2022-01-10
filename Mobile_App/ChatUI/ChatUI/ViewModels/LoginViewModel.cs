@@ -46,9 +46,9 @@ namespace ChatUI.ViewModels
 
         public ICommand LoginCmd => new AsyncCommand(async () =>
         {
-            _failedLogin = !await _aPIInteraction.LoginAsync(Email, Password);
+            FailedLogin = !await _aPIInteraction.LoginAsync(Email, Password);
             if (!_failedLogin)
-                await DIContainer.AppShell.MoveToGeneralAsync();
+                await DIContainer.AppShell.MoveToListAsync();
         });
 
         public ICommand RedirectRegistration => new AsyncCommand(async () =>

@@ -14,11 +14,13 @@ namespace ChatUI.Services
     {
         #region Fields
 
-        private SessionToken _sessionToken;
         private readonly APIWorkerService _workerService;
         private readonly IIOManager _iOManager;
+        private SessionToken _sessionToken;
 
         #endregion Fields
+
+        public SessionToken Token => _sessionToken;
 
         public bool IsTokenExpired => _sessionToken?.DateExpiration < DateTime.UtcNow;
         public bool IsValidData => _sessionToken != null &&
@@ -71,16 +73,16 @@ namespace ChatUI.Services
             }
 
             if (pairsToken != null)
-            {
                 _sessionToken.UpdateByPairTokenResponse(pairsToken);
-            }
+
+            SaveAccessTokenValid(_sessionToken);
 
             return IsValidData;
         }
 
-        public async Task<bool> Registration(string userName, string password)
+        public async Task<bool> Registration(string userName, string password, string email)
         {
-            InitSessionToken(userName, password);
+            InitSessionToken(userName, password, email);
             var userTokenResponse = default(UserTokenResponse);
             try
             {
@@ -95,6 +97,7 @@ namespace ChatUI.Services
                 return false;
 
             _sessionToken.UpdateByUserTokenResponse(userTokenResponse, password);
+            SaveAccessTokenValid(_sessionToken);
 
             return IsValidData;
         }
@@ -110,6 +113,7 @@ namespace ChatUI.Services
                     _sessionToken.Description = user.Description;
                     _sessionToken.UserName = user.UserName;
                     _sessionToken.Password = user.Password;
+                    SaveAccessTokenValid(_sessionToken);
                 }
             }
             catch
@@ -121,20 +125,29 @@ namespace ChatUI.Services
             return res;
         }
 
-        private bool InitSessionToken(string userName, string password)
+        private bool InitSessionToken(string userName, string password, string email = null)
         {
-            if (IsValidData)
+            if (!IsValidData)
             {
-                _sessionToken = new SessionToken(GetAccessToken(PathHelper.UserCredentialFile));
+                _sessionToken = GetAccessToken(PathHelper.UserCredentialFile);
                 _sessionToken.UserName = userName;
                 _sessionToken.Password = password;
+                _sessionToken.Email = email;
             }
 
             return IsValidData;
         }
 
-        private AccessToken GetAccessToken(string path) =>
-            _iOManager.ReadAll<AccessToken>(path) ?? new AccessToken();
+        private SessionToken GetAccessToken(string path) =>
+            _iOManager.ReadAll<SessionToken>(path) ?? new SessionToken();
+
+        private void SaveAccessTokenValid(SessionToken sessionToken)
+        {
+            if (IsValidData)
+            {
+                _iOManager.Write(PathHelper.UserCredentialFile, sessionToken);
+            }
+        }
 
     }
 }

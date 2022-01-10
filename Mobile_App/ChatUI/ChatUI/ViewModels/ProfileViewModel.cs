@@ -4,6 +4,7 @@ namespace ChatUI.ViewModels
 {
     public class ProfileViewModel : ViewModelBase
     {
+        private readonly IAPIInteraction _apiWorker;
         private string _myStringProperty;
         private int _rate;
         private int _age;
@@ -49,9 +50,10 @@ namespace ChatUI.ViewModels
             }
         }
 
-        public ProfileViewModel()
+        public ProfileViewModel(IAPIInteraction apiWorker)
         {
-            Rate = 10;
+            _apiWorker = apiWorker;
+            Rate = 3;
             Age = 23;
             City = "Kyiv";
             MyStringProperty = "Чтобы ни выпало мне в жизни, я всегда буду помнить слова: Чем больше сила, тем больше и ответственность. Это мой дар, моё проклятье. Кто я? Я Человек-Паук";

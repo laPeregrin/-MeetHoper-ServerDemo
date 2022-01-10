@@ -18,10 +18,10 @@ namespace Source
             {
                 var tkn = new ServerHandler.Models.AccessToken()
                 {
-                    UserName = "aboba",
+                    UserName = "aboba1",
                     Password = "12345678"
                 };
-                var baseAdress = "https://localhost:5001";
+                var baseAdress = "https://a4141-50d6.b.d-f.pw";
                 var apiWorker = new APIWorkerService(baseAdress);
 
                 var res = await apiWorker.CreateAccountAsync(tkn);
@@ -37,7 +37,7 @@ namespace Source
                     Password = "12345678",
                     Email = string.Empty,
                 };
-                var baseAdress = "https://localhost:5001";
+                var baseAdress = "https://a4141-50d6.b.d-f.pw";
                 var apiWorker = new APIWorkerService(baseAdress);
 
                 var res = await apiWorker.LoginAsync(tkn);

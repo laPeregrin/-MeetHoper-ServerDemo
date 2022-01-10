@@ -10,6 +10,11 @@ namespace ChatUI.Models
 
         public string Description { get; set; }
 
+        public SessionToken()
+        {
+
+        }
+
         public SessionToken(string userName, string password, string description = "")
         {
             UserName = userName;

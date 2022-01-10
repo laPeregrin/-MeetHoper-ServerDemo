@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:ChatUI.ViewModels"
              x:Class="ChatUI.Views.RegistrationPage"
              Shell.FlyoutBehavior="Disabled"
-             BackgroundColor="#66e0d6"
-             BindingContext="{Binding RegistrationViewModel, Source={StaticResource ViewModelLocator}}">
+             BackgroundColor="#66e0d6">
     <ContentPage.Resources>
         <Color x:Key="TextColor">#000000</Color>
         <Style TargetType="Label" x:Key="labelStyle">
@@ -17,7 +16,7 @@
                      BackgroundColor="#ada86d">
             <Label Style="{StaticResource labelStyle}"
                    Text="Username exist or check your internet connection" 
-                   IsVisible="{Binding SignUpSuccess}"/>
+                   IsVisible="{Binding SignUpFailed}"/>
             <Label Style="{StaticResource labelStyle}"
                    Text="UserName:"/>
             <Entry Text="{Binding Username}" 
