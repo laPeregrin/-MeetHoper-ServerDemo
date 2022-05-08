@@ -28,7 +28,7 @@ namespace ChatUI.ViewModels
             UsersNear.Add(new UserDataModel()
             {
                 Id = Guid.NewGuid().ToString(),
-                Name = "Aboba",
+                Name = "Jonathan",
                 Image = _image
             });
         }

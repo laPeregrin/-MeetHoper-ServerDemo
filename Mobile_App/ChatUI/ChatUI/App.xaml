@@ -6,5 +6,8 @@
     <Application.Resources>
         <ResourceDictionary Source="TemplatesSource/DarkThemeMode.xaml"/>
         <local:DIContainer x:Key="ViewModelLocator"/>
+        <Color x:Key="Gradient1Color">#8a2387</Color>
+        <Color x:Key="Gradient2Color">#e94057</Color>
+        <Color x:Key="Gradient3Color">#58adf4</Color>
     </Application.Resources>
 </Application>

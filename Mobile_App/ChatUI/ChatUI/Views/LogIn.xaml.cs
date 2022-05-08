@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Timers;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,42 +12,22 @@ namespace ChatUI.Views
         private const string ForwardAnimation = "forward";
         private const string BackrwardAnimation = "backward";
 
-        private Timer _timer;
-
         public LogInPage()
         {
             InitializeComponent();
             BindingContext = DIContainer.LoginViewModel;
-            StartAnimation();
-        }
-
-        ~LogInPage()
-        {
-            _timer.Stop();
-            _timer.Dispose();
-        }
-
-        private void StartAnimation()
-        {
-            _timer = DIContainer.TimerFactory.GetValue(5000);
-
-            if (_timer != null)
-            {
-                _timer.Elapsed += Timer_ElapseAnimation;
-                _timer.Start();
-            }
-        }
-
-        private void Timer_ElapseAnimation(object sender, ElapsedEventArgs e) =>
             AnimateBackground();
+        }
 
-        private void AnimateBackground()
+        private async void AnimateBackground()
         {
             Action<double> forward = input => bgGradient.AnchorY = input;
             Action<double> backward = input => bgGradient.AnchorY = input;
 
             bgGradient.Animate(name: ForwardAnimation, callback: forward, start: 0, end: 1, length: 5000, easing: Easing.SinIn);
+            await Task.Delay(5000);
             bgGradient.Animate(name: BackrwardAnimation, callback: backward, start: 1, end: 0, length: 5000, easing: Easing.SinIn);
+            await Task.Delay(5000);
         }
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)

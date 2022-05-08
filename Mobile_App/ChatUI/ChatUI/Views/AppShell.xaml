@@ -2,37 +2,51 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:ChatUI.Views"
+             xmlns:magic="clr-namespace:MagicGradients;assembly=MagicGradients"
              x:Class="ChatUI.Views.AppShell"
              BackgroundColor="{DynamicResource BackgroundColor}">
-    <Shell.Resources>
-        <ResourceDictionary>
-            <Color x:Key="ThemeColor">#EF3D55</Color>
-            <Color x:Key="GrayColor">Gray</Color>
-            <Color x:Key="BgColor">#F0F0F0</Color>
-            <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource BgColor}"/>
-                <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource ThemeColor}"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource GrayColor}"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource ThemeColor}"/>
-            </Style>
-            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}"></Style>
-        </ResourceDictionary>
-    </Shell.Resources>
     <Shell.FlyoutHeaderTemplate>
         <DataTemplate>
-            <Image Source="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" WidthRequest="150" HeightRequest="190">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="180"/>
+                </Grid.RowDefinitions>
+                <magic:GradientView VerticalOptions="FillAndExpand" >
+                    <magic:GradientView.GradientSource>
+                        <magic:CssGradientSource>
+                            <x:String>
+                                <![CDATA[
+                                        linear-gradient(45deg, rgb(149, 10, 155) 0%, rgb(149, 10, 155) 9%,rgb(120, 16, 136) 9%, rgb(120, 16, 136) 13%,rgb(178, 3, 174) 13%, rgb(178, 3, 174) 32%,rgb(91, 23, 117) 32%, rgb(91, 23, 117) 42%,rgb(32, 36, 79) 42%, rgb(32, 36, 79) 46%,rgb(61, 30, 98) 46%, rgb(61, 30, 98) 70%,rgb(3, 43, 60) 70%, rgb(3, 43, 60) 100%)
+                                    ]]>
+                            </x:String>
+                        </magic:CssGradientSource>
+                    </magic:GradientView.GradientSource>
+                </magic:GradientView>
+                <Image Source="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" WidthRequest="150" HeightRequest="190">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
                         Tapped="TapGestureRecognizer_onTapped"
                         NumberOfTapsRequired="1"/>
-                </Image.GestureRecognizers>
-                <Image.Clip>
-                    <EllipseGeometry RadiusX="70" RadiusY="70" Center="151, 90"/>
-                </Image.Clip>
-            </Image>
+                    </Image.GestureRecognizers>
+                    <Image.Clip>
+                        <EllipseGeometry RadiusX="70" RadiusY="70" Center="151, 90"/>
+                    </Image.Clip>
+                </Image>
+            </Grid>
         </DataTemplate>
     </Shell.FlyoutHeaderTemplate>
     <FlyoutItem Title="General">
+        <Shell.FlyoutBackdrop>
+            <LinearGradientBrush StartPoint="0,0"
+                                 EndPoint="1,1">
+                <GradientStop Color="#8a2387"
+                              Offset="0.1"/>
+                <GradientStop Color="#e94057"
+                              Offset="0.6"/>
+                <GradientStop Color="#58adf4"
+                              Offset="1.0"/>
+            </LinearGradientBrush>
+        </Shell.FlyoutBackdrop>
         <Tab>
             <ShellContent Route="MainPageDetail" ContentTemplate="{DataTemplate local:MainPageDetail}"/>
         </Tab>

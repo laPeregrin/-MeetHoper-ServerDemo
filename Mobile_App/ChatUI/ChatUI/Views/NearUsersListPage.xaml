@@ -4,32 +4,43 @@
              x:Class="ChatUI.Views.NearUsersListPage"
              xmlns:dxcv="http://schemas.devexpress.com/xamarin/2014/forms/collectionview" xmlns:model="clr-namespace:ChatUI.Models"
              BindingContext="{Binding NearUsersListViewModel, Source={StaticResource ViewModelLocator}}">
-    <ListView ItemsSource="{Binding UsersNear}"
+    <Frame>
+        <Frame.Background>
+            <LinearGradientBrush StartPoint="0,0"
+                                 EndPoint="1,1">
+                <GradientStop Color="{StaticResource Gradient1Color}"
+                              Offset="0.1"/>
+                <GradientStop Color="{StaticResource Gradient2Color}"
+                              Offset="0.6"/>
+                <GradientStop Color="{StaticResource Gradient3Color}"
+                              Offset="1.0"/>
+            </LinearGradientBrush>
+        </Frame.Background>
+        <ListView ItemsSource="{Binding UsersNear}"
                            SelectionMode="Single"
                            SelectedItem="{Binding UserDataModel}"
-                           BackgroundColor="Black"
                            HasUnevenRows="True">
-        <ListView.ItemTemplate>
-            <DataTemplate x:DataType="model:UserDataModel">
-                <ViewCell>
-                    <Grid Padding="10">
-                        <Frame>
-                            <StackLayout Orientation="Horizontal">
-                                <Image Source="{Binding Image}" WidthRequest="150">
-                                    <Image.Clip>
-                                        <EllipseGeometry RadiusX="70" RadiusY="70" Center="75, 75"/>
-                                    </Image.Clip>
-                                </Image>
-                                <StackLayout VerticalOptions="Center">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:UserDataModel">
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Frame>
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding Image}" WidthRequest="150">
+                                        <Image.Clip>
+                                            <EllipseGeometry RadiusX="70" RadiusY="70" Center="75, 75"/>
+                                        </Image.Clip>
+                                    </Image>
+                                    <StackLayout VerticalOptions="Center">
                                         <Label Text="{Binding Name}" FontSize="14" TextColor="Black"/>
+                                    </StackLayout>
                                 </StackLayout>
-                            </StackLayout>
-                        </Frame>
-                    </Grid>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-        <!--<dxcv:DXCollectionView.ItemTemplate>
+                            </Frame>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <!--<dxcv:DXCollectionView.ItemTemplate>
             <DataTemplate>
                 <dxcv:SwipeContainer>
                     <dxcv:SwipeContainer.ItemView>
@@ -48,5 +59,6 @@
                 </dxcv:SwipeContainer>
             </DataTemplate>
         </dxcv:DXCollectionView.ItemTemplate>-->
-    </ListView>
+        </ListView>
+    </Frame>
 </ContentPage>

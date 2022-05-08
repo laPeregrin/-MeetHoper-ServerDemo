@@ -11,12 +11,24 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <StackLayout Padding="10" BackgroundColor="White">
-        <Grid Padding="10">
+    <Frame>
+        <Frame.Background>
+            <LinearGradientBrush StartPoint="0,0"
+                                 EndPoint="1,1">
+                <GradientStop Color="{StaticResource Gradient1Color}"
+                              Offset="0.1"/>
+                <GradientStop Color="{StaticResource Gradient2Color}"
+                              Offset="0.6"/>
+                <GradientStop Color="{StaticResource Gradient3Color}"
+                              Offset="1.0"/>
+            </LinearGradientBrush>
+        </Frame.Background>
+        <StackLayout Padding="10">
+            <Grid Padding="10">
                 <Frame BorderColor="Black"
                    CornerRadius="20">
                     <StackLayout Orientation="Horizontal">
-                    <Image Source="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" WidthRequest="66" x:Name="userImage"/>
+                        <Image Source="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" WidthRequest="66" x:Name="userImage"/>
                         <StackLayout VerticalOptions="Center">
                             <Label
                             Style="{StaticResource labelDesign}"
@@ -26,17 +38,17 @@
                             Style="{StaticResource labelDesign}"
                             Text="Пример текста описания"/>
                         </StackLayout>
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnTapped"/>
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnTapped"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
                 </Frame>
             </Grid>
             <Grid Padding="10">
                 <Frame BorderColor="Black"
                    CornerRadius="20">
                     <StackLayout Orientation="Horizontal">
-                    <Image Source="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" WidthRequest="66"/>
+                        <Image Source="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" WidthRequest="66"/>
                         <StackLayout VerticalOptions="Center">
                             <Label
                             Style="{StaticResource labelDesign}"
@@ -45,17 +57,17 @@
                             Style="{StaticResource labelDesign}"
                             Text="Пример текста описания"/>
                         </StackLayout>
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnTapped"/>
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnTapped"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
                 </Frame>
             </Grid>
             <Grid Padding="10">
                 <Frame BorderColor="Black"
                    CornerRadius="20">
                     <StackLayout Orientation="Horizontal">
-                    <Image Source="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" WidthRequest="66"/>
+                        <Image Source="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" WidthRequest="66"/>
                         <StackLayout VerticalOptions="Center">
                             <Label
                             Style="{StaticResource labelDesign}"
@@ -64,11 +76,12 @@
                             Style="{StaticResource labelDesign}"
                             Text="Пример текста в описании"/>
                         </StackLayout>
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnTapped"/>
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnTapped"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
                 </Frame>
             </Grid>
         </StackLayout>
+    </Frame>
 </ContentPage>
