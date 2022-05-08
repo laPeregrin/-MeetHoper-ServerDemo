@@ -23,6 +23,7 @@ namespace ChatUI
             services.AddSingleton<IIOManager, IOManager>();
 
             //services
+            services.AddSingleton<AutoUpdateUserService>();
             services.AddSingleton<IAPIInteraction, RemoteDataInteractionService>();
             services.AddSingleton<IIOManager, IOManager>();
 
@@ -41,7 +42,7 @@ namespace ChatUI
                 Provider.GetRequiredService(item.ServiceType);
 #endif
     }
-
+        public static AutoUpdateUserService AutoUpdateService => Provider.GetRequiredService<AutoUpdateUserService>();
         public static IFactory<int, System.Timers.Timer> TimerFactory => Provider.GetRequiredService<IFactory<int, System.Timers.Timer>>();
         public static LoginViewModel LoginViewModel => Provider.GetRequiredService<LoginViewModel>();
         public static RegistrationViewModel RegistrationViewModel => Provider.GetRequiredService<RegistrationViewModel>();
