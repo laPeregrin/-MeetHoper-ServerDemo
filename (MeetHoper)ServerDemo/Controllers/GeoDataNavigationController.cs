@@ -1,4 +1,4 @@
-﻿using Common.Abstractions;
+﻿using _MeetHoper_ServerDemo.Services;
 using Common.Models.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,9 +12,9 @@ namespace _MeetHoper_ServerDemo.Controllers
     [ApiController]
     public class GeoDataNavigationController : ControllerBase
     {
-        private readonly IUserGeoNavigationService _userGeoNavigationService;
+        private readonly NavigationDataFeed _userGeoNavigationService;
 
-        public GeoDataNavigationController(IUserGeoNavigationService userGeoService)
+        public GeoDataNavigationController(NavigationDataFeed userGeoService)
         {
             _userGeoNavigationService = userGeoService;
         }
@@ -27,7 +27,7 @@ namespace _MeetHoper_ServerDemo.Controllers
         {
             try
             {
-               return Ok(await _userGeoNavigationService.GetNearResponseAsync(id, new Common.Models.DTOs.Geoposition(longitude, latitude)));
+               return Ok(await _userGeoNavigationService.GetNearResponseAsync(id, longitude, latitude));
             }
             catch(Exception e)
             {

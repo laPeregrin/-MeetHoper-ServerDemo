@@ -42,6 +42,8 @@ namespace _MeetHoper_ServerDemo
             services.AddSingleton<IDataBaseUserHandler, ApplicationContextService>();
             services.AddSingleton<IUserGeoNavigationService, UserGeoNavigationService>();
             services.AddSingleton<UserCredentialsService>();
+            services.AddSingleton<IIdemposityService<Guid, UserCollectionResponse>, IdemposityService>();
+            services.AddSingleton<NavigationDataFeed>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
