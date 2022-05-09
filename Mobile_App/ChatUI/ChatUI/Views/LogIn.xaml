@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:ChatUI.ViewModels"
+             x:Class="ChatUI.Views.LogInPage"
+             Shell.FlyoutBehavior="Disabled"
+             BindingContext="{Binding LoginViewModel, Source={StaticResource ViewModelLocator}}">
+    <Grid>
+        <BoxView x:Name="bgGradient" Scale="4" AnchorX="1" AnchorY="0">
+            <BoxView.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#23D5Ab" Offset="0.3"/>
+                    <GradientStop Color="#23A605" Offset="0.5"/>
+                    <GradientStop Color="#E73C7E" Offset="0.7"/>
+                    <GradientStop Color="#EE7752" Offset="1.3"/>
+                </LinearGradientBrush>
+            </BoxView.Background>
+        </BoxView>
+        <Frame 
+       BorderColor="Black"
+       HeightRequest="350"
+       WidthRequest="250"
+       HorizontalOptions="Center"
+       VerticalOptions="Center"
+       BackgroundColor="Black"
+       Opacity="0.5">
+            <StackLayout Padding="40" VerticalOptions="Center"
+                     HorizontalOptions="FillAndExpand">
+                <Label Text="Check your credentials and internet conenction" TextColor="Red" IsVisible="{Binding FailedLogin}">
+                
+                </Label>
+                <Label Text="Username:"/>
+                <Entry Text="{Binding Email}" Placeholder="Username"/>
+                <Label Text="Password:"/>
+                <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Password"/>
+                <Button WidthRequest="100" Text="Login" Command="{Binding LoginCmd}"  HorizontalOptions="Center"/>
+                <Button Text="Register" HorizontalOptions="Center" Command="{Binding RedirectRegistration}"/>
+            </StackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>

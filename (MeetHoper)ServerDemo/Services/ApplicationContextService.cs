@@ -4,6 +4,7 @@ using Common.Exceptions;
 using Common.Models.DTOs;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -21,24 +22,30 @@ namespace _MeetHoper_ServerDemo.Services
         }
 
         public async Task<User> GetEntityByActionAsync(Expression<Func<User, bool>> expression) =>
-            await _dbContext.Users.FirstOrDefaultAsync(expression);
+            await _dbContext.Users.AsNoTracking().FirstOrDefaultAsync(expression);
 
         public async Task<User> GetEntityByIdAsync(Guid id) =>
-            await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == id);
+            await _dbContext.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Id == id);
+
+        public async Task<User[]> GetEntitiesByIdsAsync(params Guid[] ids) =>
+            await _dbContext.Users.AsNoTracking().Where(u => ids.Contains(u.Id)).ToArrayAsync();
 
         public async Task<bool> UpdateEntityAsync(User entity)
         {
             try
             {
-             _dbContext.Users.Update(entity);
-             await _dbContext.SaveChangesAsync();
-             return true;
+               _dbContext.Users.Update(entity);
+               await _dbContext.SaveChangesAsync();
+               return true;
             }
-            catch(Exception e)
+            catch(Exception)
             {
-                return false;
+               return false;
             }
         }
+
+        public Task<bool> IsEntityExistAsync(Guid id) =>
+           _dbContext.Users.AnyAsync(u => u.Id == id);
 
         public async Task SaveEntityAsync(User entity)
         {
@@ -56,5 +63,6 @@ namespace _MeetHoper_ServerDemo.Services
                 throw new DataBaseException(e.Message);
             }
         }
+
     }
 }

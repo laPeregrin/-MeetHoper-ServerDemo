@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:ChatUI.ViewModels"
+             x:Class="ChatUI.Views.PageWithChats">
+    <ContentPage.BindingContext>
+        <local:ChatPageViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout Padding="10" BackgroundColor="White">
+        <Grid Padding="10">
+            <Frame BorderColor="Black"
+                   CornerRadius="20">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="Vladik.jpg" WidthRequest="66" x:Name="userImage"/>
+                    <StackLayout VerticalOptions="Center">
+                        <Label
+                            TextColor="Black"
+                            Text="Имя"
+                            x:Name="userName"
+                            VerticalOptions="Center"/>
+                        <Label
+                            TextColor="Black"
+                            Text="{Binding LastMessage}"
+                            VerticalOptions="Center"/>
+                    </StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapped"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </StackLayout>
+</ContentPage>

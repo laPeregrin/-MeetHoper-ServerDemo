@@ -10,7 +10,7 @@ namespace _MeetHoper_ServerDemo.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static void AddJwtAuthentication(this IServiceCollection serviceCollection, IConfiguration configuration)
+        public static void AddJwtSwaggerAuthentication(this IServiceCollection serviceCollection, IConfiguration configuration)
         {
             var jwtTokenSettings = configuration.GetSection("Authentication").Get<AuthenticationModel>();
             configuration.BindJwtSetting(jwtTokenSettings);

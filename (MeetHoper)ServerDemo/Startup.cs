@@ -10,6 +10,10 @@ using _MeetHoper_ServerDemo.Extensions;
 using Common;
 using _MeetHoper_ServerDemo.Services;
 using Common.Abstractions;
+using _MeetHoper_ServerDemo.Models;
+using _MeetHoper_ServerDemo.Interfaces;
+using Common.Models.DTOs;
+using Common.Models.Responses;
 
 namespace _MeetHoper_ServerDemo
 {
@@ -28,13 +32,18 @@ namespace _MeetHoper_ServerDemo
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<SaltSecret>(_configuration);
+
             DbContextSeed.AddDbContext(services, _configuration);
-
-            services.AddJwtAuthentication(_configuration);
+            services.AddJwtSwaggerAuthentication(_configuration);
+            services.AddSingleton<DapperUserHelper>();
             services.AddSingleton<PasswordHasher>();
+            services.AddSingleton<ICashService<Geoposition, UserPublicDataResponse>, GeolocationCache>();
             services.AddSingleton<IDataBaseUserHandler, ApplicationContextService>();
+            services.AddSingleton<IUserGeoNavigationService, UserGeoNavigationService>();
             services.AddSingleton<UserCredentialsService>();
-
+            services.AddSingleton<IIdemposityService<Guid, UserCollectionResponse>, IdemposityService>();
+            services.AddSingleton<NavigationDataFeed>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -64,6 +73,12 @@ namespace _MeetHoper_ServerDemo
                 });
 
             });
+
+            //services.AddStackExchangeRedisCache(options =>
+            //{
+            //    options.Configuration = _configuration.GetConnectionString("Redis");
+            //    options.InstanceName = "RedisDemo_";
+            //});
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)

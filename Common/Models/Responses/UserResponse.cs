@@ -1,22 +1,22 @@
 ﻿namespace Common.Models.Responses
 {
-    public class UserResponse
+    public class UserResponse : UserPublicDataResponse
     {
-        public string UserName { get; set; }
         public string Email { get; set; }
-        public string Description { get; set; }
-        public string ImageUrl { get; set; }
-        public double Rate { get; set; }
-        public PairTokenResponse TokenPair {get;set;}
 
-        public UserResponse(DTOs.User user, PairTokenResponse pairTokenResponse)
+        public UserResponse()
         {
+
+        }
+
+        public UserResponse(DTOs.User user)
+        {
+            Id = user.Id;
             UserName = user.UserName;
             Email = user.Email;
             Description = user.Description;
             ImageUrl = user.ImageUrl;
             Rate = user.Rate;
-            TokenPair = pairTokenResponse;
         }
     }
 }

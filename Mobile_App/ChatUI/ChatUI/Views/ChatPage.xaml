@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:ChatUI.ViewModels" xmlns:partials="clr-namespace:ChatUI.Views" x:DataType="viewmodels:ChatPageViewModel"
+             BackgroundColor="DarkGray"
+             x:Class="ChatUI.Views.ChatPage"
+             Title="Chat"
+             BindingContext="{Binding ChatPageViewModel, Source={StaticResource ViewModelLocator}}">
+    <Grid RowSpacing="0"
+          ColumnSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <!--<RowDefinition Height="1"/>-->
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <ListView Grid.Row="0"
+                  ItemsSource="{Binding Messages}"
+                  Margin="0"
+                  HasUnevenRows="True"
+                  VerticalOptions="FillAndExpand"
+                  SeparatorColor="Transparent">
+        </ListView>
+        <!--<BoxView HorizontalOptions="FillAndExpand"
+                 HeightRequest="1"
+                 BackgroundColor="#77acc5"
+                 Grid.Row="1"/>-->
+        
+        
+        <Grid Grid.Row="1">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+
+            <Entry Grid.Column="0" MinimumWidthRequest="100" Text="{Binding TextToSend}"/>
+            <Button Grid.Column="1" Text="Send" Command="{Binding SendMessageCommand}"/>
+
+        </Grid>
+        
+    </Grid>
+</ContentPage>

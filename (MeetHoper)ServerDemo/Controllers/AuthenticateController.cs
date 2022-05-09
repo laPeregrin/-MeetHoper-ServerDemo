@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 namespace _MeetHoper_ServerDemo.Controllers
 {
     [ApiController]
-    [Authorize]
     [Route("[controller]")]
     public class AuthenticateController : ControllerBase
     {
@@ -21,23 +20,38 @@ namespace _MeetHoper_ServerDemo.Controllers
             _userService = userService;
         }
 
-        [HttpGet("GetPairTokens")]
+        [HttpPost("GetPairTokens")]
         [ProducesResponseType(typeof(Response<PairTokenResponse>), 200)]
-        public async Task<IActionResult> AuthenticateAsync([FromBody] AuthenticationUserTokenRequset userRequest)
+        public async Task<IActionResult> GetPairTokensAsync([FromBody] AuthenticationUserTokenRequset userRequest)
         {
             try
             {
-                return Ok(await _userService.AuthenticateAsync(userRequest));
+                return Ok(await _userService.GetPairTokensAsync(userRequest));
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
         }
 
-        [HttpGet("SignUp")]
-        [ProducesResponseType(typeof(Response<UserResponse>), 200)]
-        public async Task<IActionResult> CreateAccountAsync([FromBody] AuthenticationUserTokenRequset userRequest)
+        [HttpPost("Login")]
+        [ProducesResponseType(typeof(Response<PairTokenResponse>), 200)]
+        public async Task<IActionResult> LoginAsync([FromBody] UserLoginRequest userRequest)
+        {
+            try
+            {
+                return Ok(await _userService.LoginAsync(userRequest));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+
+        [HttpPost("CreateAccount")]
+        [ProducesResponseType(typeof(Response<UserTokenResponse>), 200)]
+        public async Task<IActionResult> CreateAccountAsync([FromBody] CreateAccountRequest userRequest)
         {
             try
             {
@@ -48,5 +62,25 @@ namespace _MeetHoper_ServerDemo.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [Authorize]
+        [HttpPost("UpdateAccount")]
+        [ProducesResponseType(typeof(Response<bool>), 200)]
+        public async Task<IActionResult> UpdateAccountAsync([FromBody] UpdateUserDataRequest userRequest)
+        {
+            try
+            {
+                return Ok(await _userService.UpdateAccount(userRequest));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [Authorize]
+        [HttpGet("HearBeatAuth")]
+        public IActionResult HearBeatAuth() => Ok("Succes!");
+
     }
 }
